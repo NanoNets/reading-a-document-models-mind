@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>We put our document AI in an MRI machine — Nanonets</title>
+<link rel="icon" href="__NN_LOGO__">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
+<style>
+__NN_BLOG_CSS__
+.site-nav{border-bottom:1px solid var(--hairline-2);background:#fff}
+.site-nav .in{max-width:1120px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;gap:12px}
+.site-nav img{height:28px;width:auto;display:block}
+.site-nav .word{font-family:var(--heading-font);font-weight:700;font-size:19px;letter-spacing:-.02em;color:#13152A}
+.site-nav .crumb{color:var(--grey-2);font-size:14px;margin-left:8px;padding-left:16px;border-left:1px solid var(--hairline-2)}
+.kicker-line{font-family:var(--heading-font);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+.standfirst{font-size:21px;line-height:150%;color:#3c4048;margin:0 0 24px;max-width:44em}
+.punch{font-family:var(--heading-font);font-size:22px;font-weight:600;line-height:145%;letter-spacing:-.01em;color:var(--ink);margin:30px 0}
+.bigstat{background:var(--surface);border:1px solid var(--hairline);border-radius:14px;padding:26px 30px;margin:0 0 32px;display:flex;gap:22px;align-items:baseline;flex-wrap:wrap}
+.bigstat .n{font-family:var(--heading-font);font-size:56px;font-weight:700;letter-spacing:-.04em;color:var(--accent);line-height:1}
+.bigstat .d{font-size:16px;line-height:155%;color:var(--ink);max-width:34em}
+/* ---- chat scene ---- */
+.chat-scene{background:var(--surface);border:1px solid var(--hairline);border-radius:14px;padding:22px;margin:8px 0 10px}
+.chat-kicker{font-family:var(--heading-font);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-2);margin:0 0 16px}
+.chat-kicker b{color:var(--ink)}
+.chat-log{display:flex;flex-direction:column;gap:14px;max-width:560px}
+.cmsg{max-width:82%;border-radius:14px;padding:12px 15px;font-size:15.5px;line-height:150%}
+.cmsg.user{align-self:flex-end;background:var(--accent);color:#fff;border-bottom-right-radius:5px;max-width:330px}
+.cmsg.user .cdoc{display:block;width:100%;border-radius:8px;border:1px solid rgba(255,255,255,.35);margin:0 0 9px;background:#fff}
+.cmsg.ai{align-self:flex-start;background:#fff;border:1px solid var(--hairline);color:var(--ink);border-bottom-left-radius:5px;box-shadow:0 1px 3px rgba(19,21,42,.07)}
+.cmsg.ai pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13.5px;line-height:160%;margin:0;white-space:pre;overflow-x:auto;color:#2c3a72}
+.cstamp{align-self:flex-start;font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--grey);padding-left:4px}
+.ctyping{align-self:flex-start;background:#fff;border:1px solid var(--hairline);border-radius:14px;border-bottom-left-radius:5px;padding:14px 16px;display:none}
+.ctyping i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--grey-2);margin:0 2px;animation:cbounce 1.2s infinite}
+.ctyping i:nth-child(2){animation-delay:.15s}.ctyping i:nth-child(3){animation-delay:.3s}
+@keyframes cbounce{0%,60%,100%{transform:none;opacity:.5}30%{transform:translateY(-4px);opacity:1}}
+.chat-anim .cmsg.ai,.chat-anim .cstamp{opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease}
+.chat-anim .cmsg.on,.chat-anim .cstamp.on{opacity:1;transform:none}
+.chat-anim .ctyping.on{display:block}
+.chat-note{font-size:13px;color:var(--grey);margin:14px 0 0;max-width:560px}
+/* ---- instrument (scrubber) ---- */
+.instrument{background:var(--surface);border:1px solid var(--hairline);border-radius:14px;padding:26px;margin:8px 0 12px}
+.inst-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.inst-kicker{font-family:var(--heading-font);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-2)}
+.inst-kicker b{color:var(--ink)}
+.doc-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.doc-tabs button{font-family:var(--heading-font);font-size:13px;font-weight:600;color:var(--grey-2);background:#fff;border:1px solid var(--hairline);border-radius:999px;padding:7px 15px;cursor:pointer;transition:all .15s}
+.doc-tabs button[aria-pressed="true"]{color:#fff;background:var(--accent);border-color:var(--accent)}
+.doc-tabs button:focus-visible,.play:focus-visible,input[type=range]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.inst-grid{display:grid;grid-template-columns:280px 1fr;gap:26px}
+@media(max-width:760px){.inst-grid{grid-template-columns:1fr}}
+.doc-pane img{width:100%;border-radius:10px;border:1px solid var(--hairline);display:block;background:#fff}
+.doc-pane .cap{font-size:13px;line-height:150%;color:var(--grey);margin-top:8px}
+.read-pane{display:flex;flex-direction:column;gap:14px;min-width:0}
+.band-line{display:flex;align-items:baseline;gap:12px}
+.layer-big{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:26px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;min-width:74px}
+.band-name{font-family:var(--heading-font);font-size:14px;font-weight:600}
+.band-name.b0{color:var(--grey-2)}.band-name.b1{color:var(--accent)}.band-name.b2{color:#29a176}
+.chips{display:flex;flex-wrap:wrap;gap:8px;min-height:128px;align-content:flex-start}
+.chip{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;line-height:1;padding:9px 12px;border-radius:8px;background:#fff;border:1px solid var(--hairline);color:var(--ink);white-space:pre;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.chip.schema{background:var(--accent-soft);border-color:#bbc5ff;color:#2c3a72;font-weight:600}
+.chip.fmt{color:var(--grey-2);background:#fff;border-style:dashed}
+.chip.r0{font-size:17px;font-weight:600}.chip.r1{font-size:16px}.chip.r2{font-size:15px}
+.chip.dim{opacity:.8}.chip.dimmer{opacity:.55}
+@media (prefers-reduced-motion: no-preference){.chip{animation:pop .17s ease-out both}@keyframes pop{from{transform:translateY(4px);opacity:0}to{transform:none;opacity:1}}}
+.scrub-row{display:flex;align-items:center;gap:14px}
+.play{border:none;border-radius:999px;background:var(--accent);color:#fff;cursor:pointer;font-family:var(--heading-font);font-weight:600;font-size:13.5px;padding:12px 18px;flex:none;white-space:nowrap}.play:hover{filter:brightness(.94)}
+.rail-ctl{flex:1;display:flex;flex-direction:column;gap:6px}
+input[type=range]{width:100%;accent-color:var(--accent);height:26px}
+.rail-bands{display:flex;height:6px;gap:2px}
+.rail-bands i{display:block;height:100%;border-radius:3px}
+.rail-labels{display:flex;justify-content:space-between;font-family:var(--heading-font);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--grey-2)}
+.inst-note{font-size:13.5px;line-height:155%;color:var(--grey-2);border-top:1px solid var(--hairline-2);padding-top:12px;margin-top:14px}
+.inst-note b{color:var(--ink)}
+.tapestry{border:1px solid var(--hairline);border-radius:14px;overflow:hidden;margin:0 0 12px}
+.trow{display:grid;grid-template-columns:120px 1fr 220px;gap:14px;align-items:center;padding:14px 18px;border-bottom:1px solid var(--hairline-2);background:#fff}
+.trow:last-child{border-bottom:none}
+.tgenre{font-family:var(--heading-font);font-weight:600;font-size:14.5px}
+.tchips{display:flex;flex-wrap:wrap;gap:7px}
+.tchip{font-family:ui-monospace,Menlo,monospace;font-size:13.5px;background:var(--accent-soft);border:1px solid #bbc5ff;color:#2c3a72;border-radius:7px;padding:6px 9px;white-space:pre}
+.tchip i{font-style:normal;font-size:10px;color:var(--grey);margin-left:6px}
+.tnote{font-size:12.5px;line-height:145%;color:var(--grey-2)}
+@media(max-width:700px){.trow{grid-template-columns:1fr}.tnote{display:none}}
+.anat-fig{margin:8px 0 32px;background:var(--surface);border:1px solid var(--hairline);border-radius:14px;padding:22px 18px 12px;overflow-x:auto}
+.anat-fig svg{min-width:620px}
+:root{--grey:#63697a}
+figure.img-fig{margin:0 0 12px}
+figure.img-fig img{width:100%;border:1px solid var(--hairline);border-radius:14px;background:#fff;display:block}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 32px}
+.cta{font-family:var(--heading-font);font-weight:600;font-size:15px;text-decoration:none;border-radius:10px;padding:12px 20px}
+.cta.primary{background:var(--accent);color:#fff}
+.cta.ghost{border:1px solid var(--hairline);color:var(--ink)}
+.cta:hover{filter:brightness(.94)}
+.cta:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.footer-line{border-top:1px solid var(--hairline-2);margin-top:64px;padding-top:24px;font-size:14.5px;line-height:165%;color:var(--grey-2)}
+/* mind gauge + analogies */
+.mind-row{display:flex;gap:20px}
+.mind-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:13px}
+.mindgauge{flex:none;width:92px;height:auto;align-self:flex-start}
+#gmark{transition:transform .5s cubic-bezier(.22,1,.36,1)}
+@media (prefers-reduced-motion: reduce){#gmark{transition:none}}
+.analogy{margin:0;font-size:15px;font-style:italic;line-height:155%;color:#3c4048;border-left:2px solid var(--accent);padding-left:12px}
+.analogy .alabel{font-family:var(--heading-font);font-style:normal;font-weight:600;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);display:block;margin-bottom:3px}
+@media(max-width:560px){.mindgauge{display:none}}
+/* story checkpoints */
+.analogy{min-height:48px}
+.analogy.spot{border-left:3px solid var(--accent);background:#eef1ff;padding:9px 12px;font-style:normal;font-size:14.5px;color:var(--ink);border-radius:0 8px 8px 0}
+.analogy.spot em{font-style:normal}
+.analogy.spot .alabel{color:var(--accent)}
+.chips.cp-schema .chip.schema.r0,.chips.cp-schema .chip.schema.r1{box-shadow:0 0 0 2px var(--accent),0 4px 12px rgba(84,111,255,.22)}
+.chips.cp-fmt .chip.fmt{box-shadow:0 0 0 2px var(--accent),0 4px 12px rgba(84,111,255,.22)}
+.chips.cp-first .chip.r0{box-shadow:0 0 0 2px var(--accent),0 4px 12px rgba(84,111,255,.22)}
+.scrub-row{flex-wrap:wrap}
+.speeds{display:flex;align-items:center;gap:6px}
+.speeds .slab{font-family:var(--heading-font);font-weight:600;font-size:9px;letter-spacing:.14em;color:var(--grey)}
+.speeds button{font-family:var(--heading-font);font-weight:600;font-size:11.5px;padding:6px 10px;border-radius:999px;border:1px solid var(--hairline);background:#fff;color:var(--grey-2);cursor:pointer}
+.speeds button[aria-checked="true"]{background:var(--accent-soft);border-color:var(--accent);color:#2c3a72}
+.speeds button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.analogy.spot a{color:var(--accent)}
+</style>
+</head>
+<body>
+<nav class="site-nav"><div class="in">
+  <img src="__NN_LOGO__" alt="Nanonets"><span class="word">Nanonets</span><span class="crumb">Blog</span>
+</div></nav>
+
+<div class="page" style="grid-template-columns:minmax(0,748px);justify-content:center">
+  <main>
+    <header class="post-header">
+      <p class="kicker-line">Nanonets · AI Research</p>
+      <h1>We put our document AI in an MRI machine</h1>
+      <p class="standfirst">Every day, people hand document models millions of pages and get clean data back in about a second. This is the story of what happens <em>inside</em> that second &mdash; watched live, for the first time on a document model, with an instrument that reads the model&rsquo;s mind mid&#8209;thought.</p>
+      <div class="byline">
+        <span class="avatar">MS</span>
+        <span><strong>Mohammad Ali Shehral</strong> &middot; Nanonets Applied AI Research</span><span class="sep">·</span>
+        <span>August 2026</span><span class="sep">·</span>
+        <span class="draft-pill">Internal draft</span>
+      </div>
+    </header>
+
+    <h2>Start with the most ordinary thing in the world</h2>
+    <section class="chat-scene" id="chatscene" aria-label="A typical document extraction exchange">
+      <p class="chat-kicker"><b>The daily ritual</b> · a document extraction, as your team sees it</p>
+      <div class="chat-log">
+        <div class="cmsg user" data-step="0">
+          <img class="cdoc" src="__CHAT_DOC__" alt="An invoice from ACME Supplies Ltd.">
+          Extract the vendor, invoice date, and total due. JSON, please.
+        </div>
+        <div class="ctyping" data-step="1" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="cmsg ai" data-step="2"><pre>{
+  "vendor": "ACME Supplies Ltd.",
+  "invoice_date": "2026-08-12",
+  "total_due": "$2,058.00"
+}</pre></div>
+        <div class="cstamp" data-step="3">every field correct</div>
+      </div>
+      <p class="chat-note">The ritual, reconstructed with a demo invoice we rendered. Millions of exchanges like this run every day &mdash; finance teams, logistics desks, hospital back offices.</p>
+    </section>
+
+    <p style="margin-top:26px">An invoice goes in. Clean data comes out. Somebody&rsquo;s month&#8209;end close moves one document forward, and nobody thinks about it again &mdash; which is exactly what good infrastructure feels like.</p>
+    <p class="punch">Now the question almost nobody asks: what happened during that one second in the middle?</p>
+
+    <h2>Until recently, nobody could tell you</h2>
+    <p>Not the people who use these models. Not, honestly, the people who build them &mdash; and we build them. If you grew up in the software era, that sounds impossible. It isn&rsquo;t &mdash; it&rsquo;s the defining property of the technology, and the strange deal the whole AI industry signed.</p>
+    <p>When ordinary software misbehaves, an engineer opens the code and finds the line that did it. An AI model breaks that deal completely: it is not a program anyone wrote. It&rsquo;s billions of numbers that arranged <em>themselves</em> during training, and there is no code to open, no line to point to. The model plainly knows things &mdash; watch it flawlessly parse a table it has never seen &mdash; but it knows them in a language no human reads.</p>
+    <p>So the industry learned to treat models the way you treat a vending machine: judge them by what comes out. Feed in thousands of test documents, keep rigorous score, publish the accuracy. That outside&#8209;in testing is real science &mdash; it&rsquo;s how we publish our benchmarks &mdash; but it has a ceiling. It tells you <em>what</em> the model got right. It can never tell you <em>why</em>.</p>
+
+    <h2>Then somebody built a scanner</h2>
+    <p>This July, researchers at Anthropic &mdash; the AI lab behind Claude, ChatGPT&rsquo;s main rival &mdash; <a href="https://www.anthropic.com/research/global-workspace">published a way to look inside</a> (their post is worth a visit for the video tour alone): an instrument that translates a model&rsquo;s internal states into ordinary words <em>while it thinks</em>. Not a log of what the model typed &mdash; a readout of what it was thinking about, mid&#8209;thought, including thoughts that never reach the page.</p>
+    <p class="punch">An MRI machine for a model&rsquo;s brain, more or less.</p>
+    <p>To be precise about the metaphor: imaging, not telepathy. It shows structure in a computation the way an MRI shows structure in tissue &mdash; nobody here thinks the model has feelings. What it shows is <em>what the computation is about</em>, while it runs.</p>
+    <p>It came with one catch: it only worked on models that read text. Our models <em>look</em> at things &mdash; pixels, scans, photographed receipts &mdash; and nobody had fully validated such a scanner for a model with eyes. So we built one, validated it end to end, and pointed it at <a href="https://huggingface.co/nanonets/Nanonets-OCR2-3B">Nanonets&#8209;OCR2</a>, our <em>open&#8209;weights</em> document model &mdash; meaning the billions of numbers themselves are published. We chose it deliberately: anyone can download the exact model we scanned, run our released code, and check every reading in this post.</p>
+    <p>Then we put the model in the scanner.</p>
+
+    <h2>How do you scan a brain made of numbers?</h2>
+    <p>To follow what comes next you need exactly one piece of anatomy, and it fits in a picture. A document model has <strong>eyes</strong>: a front end that chops the page into little tiles and turns each tile into numbers &mdash; a few hundred signals that now stand in for your invoice. Those signals then climb a <strong>stack of 35 thinking steps</strong> (engineers call them <em>layers</em>, which is why the scanner below labels them L&nbsp;0 to L&nbsp;34), each one refining the same evolving thought: <em>what am I looking at, and what should I say about it?</em> Only at the very top of the stack does thought become language &mdash; the final state is converted into a single word. Then the entire 35&#8209;step climb runs again. And again &mdash; once per word, dozens of full climbs inside that one second you never think about.</p>
+    <figure class="anat-fig">
+    <svg viewBox="0 0 900 330" role="img" aria-label="How a document model works: the page enters its eyes, becomes signals, climbs 35 thinking steps, and exits as words. Our scanner reads any step mid-thought." style="width:100%;height:auto;display:block">
+      <defs>
+        <pattern id="blay-see" width="8" height="7" patternUnits="userSpaceOnUse"><rect width="8" height="4" fill="#ccd1da"/></pattern>
+        <pattern id="blay-und" width="8" height="7" patternUnits="userSpaceOnUse"><rect width="8" height="4" fill="#b9c3ff"/></pattern>
+        <pattern id="blay-wri" width="8" height="7" patternUnits="userSpaceOnUse"><rect width="8" height="4" fill="#8fd4bb"/></pattern>
+        <marker id="bah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#7a828e"/></marker>
+      </defs>
+      <rect x="26" y="78" width="92" height="120" rx="8" fill="#fff" stroke="#e6e8ec" stroke-width="1.5"/>
+      <rect x="38" y="92" width="44" height="7" rx="2" fill="#131315" fill-opacity=".6"/>
+      <rect x="38" y="108" width="68" height="4" rx="2" fill="#131315" fill-opacity=".16"/>
+      <rect x="38" y="118" width="62" height="4" rx="2" fill="#131315" fill-opacity=".16"/>
+      <rect x="38" y="128" width="68" height="4" rx="2" fill="#131315" fill-opacity=".16"/>
+      <rect x="38" y="146" width="68" height="26" rx="2" fill="none" stroke="#131315" stroke-opacity=".2"/>
+      <line x1="38" y1="159" x2="106" y2="159" stroke="#131315" stroke-opacity=".2"/>
+      <line x1="72" y1="146" x2="72" y2="172" stroke="#131315" stroke-opacity=".2"/>
+      <text x="72" y="222" text-anchor="middle" font-family="'DM Sans',sans-serif" font-weight="600" font-size="11" letter-spacing="1.2" fill="#7a828e">THE PAGE</text>
+      <line x1="126" y1="138" x2="164" y2="138" stroke="#7a828e" stroke-width="1.4" marker-end="url(#bah)"/>
+      <rect x="172" y="94" width="104" height="88" rx="10" fill="#fff" stroke="#e6e8ec" stroke-width="1.5"/>
+      <g fill="#546fff">
+        <rect x="184" y="106" width="14" height="14" rx="3" opacity=".85"/><rect x="203" y="106" width="14" height="14" rx="3" opacity=".5"/><rect x="222" y="106" width="14" height="14" rx="3" opacity=".7"/><rect x="241" y="106" width="14" height="14" rx="3" opacity=".35"/>
+        <rect x="184" y="125" width="14" height="14" rx="3" opacity=".45"/><rect x="203" y="125" width="14" height="14" rx="3" opacity=".8"/><rect x="222" y="125" width="14" height="14" rx="3" opacity=".3"/><rect x="241" y="125" width="14" height="14" rx="3" opacity=".65"/>
+        <rect x="184" y="144" width="14" height="14" rx="3" opacity=".65"/><rect x="203" y="144" width="14" height="14" rx="3" opacity=".35"/><rect x="222" y="144" width="14" height="14" rx="3" opacity=".85"/><rect x="241" y="144" width="14" height="14" rx="3" opacity=".5"/>
+      </g>
+      <text x="224" y="222" text-anchor="middle" font-family="'DM Sans',sans-serif" font-weight="600" font-size="11" letter-spacing="1.2" fill="#7a828e">ITS EYES</text>
+      <text x="224" y="238" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="10.5" fill="#9aa0ab">the page becomes ~256 signals</text>
+      <line x1="284" y1="138" x2="322" y2="138" stroke="#7a828e" stroke-width="1.4" marker-end="url(#bah)"/>
+      <rect x="330" y="206" width="140" height="68" fill="url(#blay-see)"/>
+      <rect x="330" y="62"  width="140" height="144" fill="url(#blay-und)"/>
+      <rect x="330" y="34"  width="140" height="28" fill="url(#blay-wri)"/>
+      <rect x="330" y="34" width="140" height="240" fill="none" stroke="#c7cbd4"/>
+      <text x="482" y="52"  font-family="'DM Sans',sans-serif" font-weight="600" font-size="10" letter-spacing="1" fill="#29a176">WRITING</text>
+      <text x="482" y="140" font-family="'DM Sans',sans-serif" font-weight="600" font-size="10" letter-spacing="1" fill="#546fff">UNDERSTANDING</text>
+      <text x="482" y="262" font-family="'DM Sans',sans-serif" font-weight="600" font-size="10" letter-spacing="1" fill="#7a828e">SEEING</text>
+      <text x="400" y="298" text-anchor="middle" font-family="'DM Sans',sans-serif" font-weight="600" font-size="11" letter-spacing="1.2" fill="#7a828e">ITS MIND · 35 THINKING STEPS</text>
+      <line x1="400" y1="34" x2="400" y2="16" stroke="#7a828e" stroke-width="1.4"/>
+      <line x1="400" y1="16" x2="614" y2="16" stroke="#7a828e" stroke-width="1.4"/>
+      <line x1="614" y1="16" x2="614" y2="30" stroke="#7a828e" stroke-width="1.4" marker-end="url(#bah)"/>
+      <rect x="540" y="36" width="220" height="58" rx="10" fill="#fff" stroke="#e6e8ec" stroke-width="1.5"/>
+      <text x="554" y="60" font-family="ui-monospace,Menlo,monospace" font-size="11.5" fill="#2c3a72">"vendor": "ACME&#8230;</text>
+      <text x="554" y="78" font-family="'DM Sans',sans-serif" font-size="10.5" fill="#9aa0ab">one word out per full climb</text>
+      <text x="650" y="112" text-anchor="middle" font-family="'DM Sans',sans-serif" font-weight="600" font-size="11" letter-spacing="1.2" fill="#7a828e">THE ANSWER</text>
+      <line x1="470" y1="168" x2="560" y2="168" stroke="#546fff" stroke-width="1.7" stroke-dasharray="5 4"/>
+      <line x1="560" y1="168" x2="560" y2="186" stroke="#546fff" stroke-width="1.7" stroke-dasharray="5 4" marker-end="url(#bah)"/>
+      <circle cx="470" cy="168" r="4.5" fill="#546fff"/>
+      <g font-family="ui-monospace,Menlo,monospace" font-size="11.5">
+        <rect x="560" y="192" width="56" height="24" rx="7" fill="#eef1ff" stroke="#bbc5ff"/><text x="588" y="208" text-anchor="middle" fill="#2c3a72">Date</text>
+        <rect x="622" y="192" width="82" height="24" rx="7" fill="#eef1ff" stroke="#bbc5ff"/><text x="663" y="208" text-anchor="middle" fill="#2c3a72">Invoice</text>
+        <rect x="710" y="192" width="64" height="24" rx="7" fill="#eef1ff" stroke="#bbc5ff"/><text x="742" y="208" text-anchor="middle" fill="#2c3a72">Total</text>
+      </g>
+      <text x="560" y="238" font-family="'DM Sans',sans-serif" font-weight="600" font-size="11" letter-spacing="1.2" fill="#546fff">OUR SCANNER</text>
+      <text x="560" y="253" font-family="'DM Sans',sans-serif" font-size="10.5" fill="#9aa0ab">reads any step, mid-thought, as words</text>
+    </svg>
+    <figcaption style="font-size:14px;line-height:155%;color:var(--grey);margin-top:10px">The one diagram you need. Normally, only the top of the stack ever becomes words. The scanner adds a translator to <em>every</em> step &mdash; so any point in the climb can be read out as vocabulary, before the model has typed anything at all.</figcaption>
+    </figure>
+    <p>Everything you have ever seen a model produce comes from the top of that stack. The other thirty&#8209;four steps &mdash; where the actual understanding happens &mdash; are normally invisible. The scanner is a passive readout, not surgery: the model computes exactly what it always did. The difference is that now we get to watch.</p>
+
+    <h2>Your first brain scan</h2>
+    <section class="instrument" aria-label="Interactive: scrub through the model's layers">
+      <div class="inst-top">
+        <span class="inst-kicker"><b>Live</b> · that one second, sliced into 35 thinking steps · real public documents</span>
+        <div class="doc-tabs" role="radiogroup" aria-label="Choose a document"></div>
+      </div>
+      <div class="inst-grid">
+        <div class="doc-pane">
+          <img id="docimg" alt="The document the model is reading" src="">
+          <p class="cap">The model has typed <b>nothing yet</b> &mdash; everything on the right is read directly from its internal state.</p>
+        </div>
+        <div class="read-pane">
+<div class="mind-row">
+<svg class="mindgauge" viewBox="0 0 120 240" aria-hidden="true">
+      <path d="M58 18 C40 20 30 34 27 52 C25 62 24 70 24 78 C24 84 18 90 14 97 C12 101 16 104 22 106 C25 108 24 112 22 115 C18 119 18 122 22 125 C26 127 25 130 23 133 C21 137 24 142 29 146 C36 152 48 158 56 166 C59 170 60 176 60 184 L60 212 L88 212 L88 186 C86 172 88 160 92 148 C99 132 104 112 103 92 C102 60 88 24 58 18 Z" fill="#fbfbfd" stroke="#131315" stroke-opacity=".4" stroke-width="1.7" stroke-linejoin="round"/>
+      <path d="M28 84 C31 81.5 35.5 81.5 38 84" fill="none" stroke="#131315" stroke-opacity=".55" stroke-width="1.6" stroke-linecap="round"/>
+      <rect x="46" y="122.0" width="44" height="2" rx=".8" fill="#ccd1da"/><rect x="46" y="119.3" width="44" height="2" rx=".8" fill="#ccd1da"/><rect x="46" y="116.6" width="44" height="2" rx=".8" fill="#ccd1da"/><rect x="46" y="113.9" width="44" height="2" rx=".8" fill="#ccd1da"/><rect x="46" y="111.2" width="44" height="2" rx=".8" fill="#ccd1da"/><rect x="46" y="108.5" width="44" height="2" rx=".8" fill="#ccd1da"/><rect x="46" y="105.8" width="44" height="2" rx=".8" fill="#ccd1da"/><rect x="46" y="103.1" width="44" height="2" rx=".8" fill="#ccd1da"/><rect x="46" y="100.4" width="44" height="2" rx=".8" fill="#ccd1da"/><rect x="46" y="97.7" width="44" height="2" rx=".8" fill="#ccd1da"/><rect x="46" y="95.0" width="44" height="2" rx=".8" fill="#b9c3ff"/><rect x="46" y="92.3" width="44" height="2" rx=".8" fill="#b9c3ff"/><rect x="46" y="89.6" width="44" height="2" rx=".8" fill="#b9c3ff"/><rect x="46" y="86.9" width="44" height="2" rx=".8" fill="#b9c3ff"/><rect x="46" y="84.2" width="44" height="2" rx=".8" fill="#b9c3ff"/><rect x="46" y="81.5" width="44" height="2" rx=".8" fill="#b9c3ff"/><rect x="46" y="78.8" width="44" height="2" rx=".8" fill="#b9c3ff"/><rect x="46" y="76.1" width="44" height="2" rx=".8" fill="#b9c3ff"/><rect x="46" y="73.4" width="44" height="2" rx=".8" fill="#b9c3ff"/><rect x="46" y="70.7" width="44" height="2" rx=".8" fill="#b9c3ff"/><rect x="46" y="68.0" width="44" height="2" rx=".8" fill="#b9c3ff"/><rect x="46" y="65.3" width="44" height="2" rx=".8" fill="#b9c3ff"/><rect x="46" y="62.6" width="44" height="2" rx=".8" fill="#b9c3ff"/><rect x="46" y="59.9" width="44" height="2" rx=".8" fill="#b9c3ff"/><rect x="46" y="57.2" width="44" height="2" rx=".8" fill="#b9c3ff"/><rect x="46" y="54.5" width="44" height="2" rx=".8" fill="#b9c3ff"/><rect x="46" y="51.8" width="44" height="2" rx=".8" fill="#b9c3ff"/><rect x="46" y="49.1" width="44" height="2" rx=".8" fill="#b9c3ff"/><rect x="46" y="46.4" width="44" height="2" rx=".8" fill="#b9c3ff"/><rect x="46" y="43.7" width="44" height="2" rx=".8" fill="#b9c3ff"/><rect x="46" y="41.0" width="44" height="2" rx=".8" fill="#b9c3ff"/><rect x="46" y="38.3" width="44" height="2" rx=".8" fill="#8fd4bb"/><rect x="46" y="35.6" width="44" height="2" rx=".8" fill="#8fd4bb"/><rect x="46" y="32.9" width="44" height="2" rx=".8" fill="#8fd4bb"/><rect x="46" y="30.2" width="44" height="2" rx=".8" fill="#8fd4bb"/>
+      <g id="gmark"><rect x="42" y="120.8" width="52" height="4.4" rx="2.2" fill="#546fff" fill-opacity=".92"/></g>
+      <text x="60" y="234" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="8.5" letter-spacing="1.2" fill="#7a828e">INSIDE ITS MIND</text>
+    </svg>
+<div class="mind-main">
+          <div class="band-line">
+            <span class="layer-big" id="layerno">L&nbsp;16</span>
+            <span class="band-name b1" id="bandname">understanding &mdash; the document as an idea</span>
+          </div>
+          <p class="analogy"><span class="alabel">IN HUMAN TERMS</span><em id="analogy"></em></p>
+          <div class="chips" id="chips"></div>
+          </div></div>
+          <div class="scrub-row">
+            <button class="play" id="play" aria-label="Play the guided scan">▶&nbsp; Play the scan</button>
+            <div class="rail-ctl">
+              <input type="range" id="slider" min="0" max="34" value="16" step="1" aria-label="Layer">
+              <div class="rail-bands" aria-hidden="true"><i style="width:28.5%;background:#c7cbd4"></i><i style="width:60%;background:var(--accent)"></i><i style="width:11.5%;background:#29a176"></i></div>
+              <div class="rail-labels"><span>Seeing</span><span>Understanding</span><span>Writing</span></div>
+            </div>
+            <div class="speeds" role="radiogroup" aria-label="Reading speed"><span class="slab">SPEED</span><button type="button" role="radio" aria-checked="true" data-s="1">Slow</button><button type="button" role="radio" aria-checked="false" data-s="0.55">Medium</button><button type="button" role="radio" aria-checked="false" data-s="0.3">Fast</button></div>
+          </div>
+          <p class="inst-note"><b>Blue chips are schema</b> &mdash; fields the model expects to need, mostly not yet read off the page. Dashed chips are output formatting it&rsquo;s preparing. Slide to the end: <b>the final steps spell the document&rsquo;s own first word</b> &mdash; <span style="font-family:ui-monospace,Menlo,monospace">Page</span>, <span style="font-family:ui-monospace,Menlo,monospace">FIG</span>, <span style="font-family:ui-monospace,Menlo,monospace">Names</span>, <span style="font-family:ui-monospace,Menlo,monospace">Form&nbsp;W</span> across these four documents. Real measurements; the model&rsquo;s internal bookkeeping symbols are hidden and blank space condensed. Steps are numbered L&nbsp;0&ndash;34.</p>
+        </div>
+      </div>
+    </section>
+    <p style="margin-top:24px">Drag the slider and the second unfolds. For the first stages, almost nothing &mdash; the model is still <em>looking</em>. A third of the way in, the readings snap into focus: <strong>Date. Name. Page. Address.</strong> It has recognized what it&rsquo;s holding and pulled up the vocabulary it expects to need &mdash; before reading most of it off the page. By the final stages it&rsquo;s arranging the exact output format, and spelling the document&rsquo;s first word. (Some chips are junk &mdash; a translator this cheap is noisy, and we&rsquo;re showing you the raw readout. Look at what survives the noise.) Looking, understanding, writing: three phases, and you can watch each one.</p>
+
+    <h2>Every document summons a different mind</h2>
+    __TAPESTRY__
+    <p style="font-size:14px;color:var(--grey);margin-bottom:32px">Real measurements: each genre&rsquo;s signature inner vocabulary; L is the median layer where it first appears.</p>
+    <p>Hand it an equation page and its inner monologue fills with LaTeX scaffolding &mdash; the bracket&#8209;and&#8209;backslash symbols of mathematicians&rsquo; typesetting language. Hand it a receipt and up comes <span style="font-family:ui-monospace,Menlo,monospace">TOTAL</span>, plus separator art for the totals block. Handwriting summons half&#8209;words &mdash; the model sounding out the script &mdash; and skips typesetting entirely, because prose needs none. The model doesn&rsquo;t run one generic pipeline and note differences along the way. It <em>becomes a different specialist for each kind of document</em>, before writing anything.</p>
+    <p>And its inner voice is multilingual even when the document isn&rsquo;t. On our expense&#8209;form test, one late layer holds <em>Employee</em>, <em>员工</em>, and <em>empleado</em> &mdash; the same idea in three languages, simultaneously. Somewhere in training it learned &ldquo;employee&#8209;ness&rdquo; as something bigger than any one language.</p>
+
+    <h2>It starts answering before it finishes reading</h2>
+    <p>Two more readings off the scanner, because they change how you should picture that one&#8209;second pause.</p>
+    <p>First: through the middle of its thinking, the model isn&rsquo;t working in words at all yet. It&rsquo;s working in <em>schema</em> &mdash; what this document is, which fields matter, what shape the answer takes &mdash; and its inner state matches the exact word it will eventually type only about one time in twenty at the low point. (The answer still comes out right; it just isn&rsquo;t assembled into English until the end.) The exact wording snaps into place only in the last few steps &mdash; where, before a single character exists, the model is already spelling the first word of its answer. The pause isn&rsquo;t hesitation. It&rsquo;s rehearsal.</p>
+    <p>Second: hand it <em>any</em> page &mdash; invoice, equation, even handwriting &mdash; and in <strong>26 out of 26</strong> test documents the signal <span style="font-family:ui-monospace,Menlo,monospace">&lt;table</span> is already among its strongest internal readings while it&rsquo;s still reading. A table reflex, whether or not there&rsquo;s a table. Nobody coded that; it&rsquo;s a professional habit the model trained into itself &mdash; the way an accountant&rsquo;s eyes jump to the bottom line. Its base model shows that reflex twice in the whole study. Ours shows it 198 times.</p>
+
+    <div class="bigstat"><span class="n">88%</span><span class="d">of the most influential internal signals in the open base model have <strong>no name in its vocabulary</strong> &mdash; 73% in our own model, and in ours the effect sits even further above the calibration floor. The scanner&rsquo;s most humbling reading: these models know far more than they say &mdash; words are just the export format. That nameless majority is where our reliability research lives.</span></div>
+
+    <h2>Both twins in the scanner</h2>
+    <p>Nanonets&#8209;OCR2 is built from an open base model plus our document training &mdash; which let us do something genuinely new: put <em>both</em> in the scanner and compare minds, layer by layer. The picture is remarkably clean. Our training rewired the model&rsquo;s early <em>reading</em> machinery &mdash; where document expertise lives &mdash; while leaving its <em>writing</em> machinery essentially untouched.</p>
+    <figure class="img-fig"><img src="__FIG_CHIASMUS_BRAND__" alt="Two curves crossing near layer 8: translation-machinery similarity between the models rises with depth while their internal states diverge"><p style="font-size:14px;color:var(--grey);margin-bottom:32px">Blue: how alike the two models&rsquo; habits of turning thought into words are &mdash; nearly identical by the top. Black: how alike the thoughts themselves are &mdash; increasingly different with depth. Same typewriter, new reader.</p></figure>
+    <p>That&rsquo;s what a specialized model is, visible at layer resolution for the first time on a document model: not a generic model with a prompt taped on, but one whose reading apparatus was rebuilt around documents. The scanner even catches the habits our training instilled &mdash; the document&#8209;trained model keeps its attention on the page image about <strong>3&times; harder</strong> than its untrained twin while answering &mdash; exactly the habit you want in a system whose job is to report what&rsquo;s on the page, not what&rsquo;s plausible. We taught it to keep its eyes on the document. It listened.</p>
+
+    <h2>Why this matters to you</h2>
+    <p>Because reliability starts becoming an engineering discipline &mdash; rather than a guessing game &mdash; when you can watch the machine think. An instrument like this is how document AI graduates from a black box you score to a system you can <em>inspect</em> &mdash; and inspection is the foundation everything else gets built on: better models, sharper evidence, automation you can defend to an auditor.</p>
+    <p>The full study &mdash; the method, every measurement, the fine print, and the complete interactive scan &mdash; is in our research note. The scanners themselves are open &mdash; researchers call them <em>lenses</em>: both fitted lenses, all the code, every evidence table. Fit them to your own documents and tell us what you find.</p>
+    <div class="cta-row">
+      <a class="cta primary" href="index.html">Read the research note →</a>
+      <a class="cta ghost" href="https://huggingface.co/nanonets/document-vlm-jacobian-lenses">The lenses on Hugging Face →</a>
+      <a class="cta ghost" href="https://github.com/NanoNets/reading-a-document-models-mind">Code on GitHub →</a>
+      <a class="cta ghost" href="https://nanonets.com">See Nanonets on your documents →</a>
+    </div>
+
+    <p class="footer-line">Written by Mohammad Ali Shehral, Nanonets Applied AI Research. Quoting this post? Please credit the author and link the <a href="index.html">research note</a>. Built on the Jacobian&#8209;lens method of Gurnee, Sofroniew, Lindsey et&nbsp;al. (Anthropic, 2026), with thanks. &copy; Nanonets, Inc.</p>
+  </main>
+</div>
+
+<script>
+/* ---- chat scene: play the exchange when it scrolls into view ---- */
+(function(){
+  const scene=document.getElementById("chatscene");
+  const motionOK=!window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(!motionOK||!("IntersectionObserver" in window))return; /* no JS/motion: everything visible */
+  scene.classList.add("chat-anim");
+  const step=n=>scene.querySelector('[data-step="'+n+'"]');
+  let played=false;
+  const io=new IntersectionObserver(es=>{
+    if(played||!es.some(e=>e.isIntersecting))return;
+    played=true; io.disconnect();
+    setTimeout(()=>step(1).classList.add("on"),400);
+    setTimeout(()=>{step(1).classList.remove("on");step(2).classList.add("on");},1700);
+    setTimeout(()=>step(3).classList.add("on"),2200);
+  },{threshold:.25});
+  io.observe(scene);
+})();
+/* ---- the scanner ---- */
+const DATA = __SCRUBBER_DATA__;
+const TABS = {financial:"Financial summary", report:"Report", news:"News page", w9:"IRS W-9"};
+const SCHEMA = new Set(["Invoice","invoice","Total","TOTAL","Date","Number","$","Amount","Price","Quantity","Item","Receipt","金额","Name","NAME","Names","Email","email","Address","Page","page","Phone","Figure","figure","FIG","Table","Document","Office","Form","print","Print","Type","Value","Employee","EMP","员工","empleado","姓名","页面"]);
+const FMT = t => /^[\s\-=~#*_:;.,!\/\\<>\[\]{}()|'"`⏎]+$/.test(t.trim()) || t.includes("<table") || t.includes("```") || /^[-=_*#:]+\n*$/.test(t);
+const ANA=L=> L<=4?"the first glance \u2014 ink, edges, shapes on a page; nothing means anything yet"
+ :L<=9?"the page sharpening into letters, the instant before reading begins"
+ :L<=15?"the \u2018ah, an invoice\u2019 moment \u2014 knowing the kind of paperwork before reading a word of it"
+ :L<=21?"laying out the mental checklist \u2014 name, date, total \u2014 empty boxes the reading will fill"
+ :L<=30?"drafting the reply\u2019s layout in its head \u2014 rows, columns, headings \u2014 while still reading"
+ :"on the tip of its tongue \u2014 rehearsing the exact first word before saying anything";
+const FIRSTW={financial:"Page",report:"FIG",news:"Names",w9:"Form W"};
+const CP={2:{t:()=>"Meaning hasn\u2019t formed yet \u2014 the model is still looking, and these readings are mostly noise. We show you the raw readout anyway.",c:""},
+16:{t:()=>"The blue chips are the story: schema. The model has recognized what kind of document it\u2019s holding and summoned the fields it expects to need \u2014 mostly before reading them off the page.",c:"cp-schema"},
+26:{t:()=>"The dashed chips are formatting. It\u2019s already arranging how the answer will look \u2014 table markup, separators \u2014 while still holding the content.",c:"cp-fmt"},
+33:{t:()=>"The payoff: it\u2019s spelling this document\u2019s own first word \u2014 "+(FIRSTW[doc]||"")+" \u2014 before a single character is typed.",c:"cp-first"}};
+let speedMul=1;
+const bands=[{max:9,cls:"b0",name:"seeing — raw impression of the pixels"},
+             {max:30,cls:"b1",name:"understanding — the document as an idea"},
+             {max:34,cls:"b2",name:"writing — preparing the exact words"}];
+let doc=Object.keys(DATA.docs)[0], playing=null;
+const $=id=>document.getElementById(id);
+const tabBox=document.querySelector(".doc-tabs");
+Object.keys(DATA.docs).forEach((k,i)=>{
+  const b=document.createElement("button");
+  b.textContent=TABS[k]||k; b.dataset.doc=k; b.setAttribute("role","radio"); b.setAttribute("aria-checked", i===0?"true":"false");
+  b.addEventListener("click",()=>{doc=k;
+    tabBox.querySelectorAll("button").forEach(x=>x.setAttribute("aria-checked",x===b?"true":"false"));
+    $("docimg").src=DATA.docs[doc]._img; $("docimg").alt="The document the model is reading: "+(TABS[doc]||doc); render();});
+  tabBox.appendChild(b);
+});
+function render(){
+  const L=+$("slider").value;
+  $("layerno").textContent="L "+L;
+  (function(){const an=document.getElementById("analogy"),ap=an.parentElement,al=ap.querySelector(".alabel");
+    if(CP[L]){ap.classList.add("spot");al.textContent="WHAT TO SEE HERE";an.textContent=CP[L].t();}
+    else{ap.classList.remove("spot");al.textContent="IN HUMAN TERMS";an.textContent=ANA(L);}})();
+  document.getElementById("gmark").style.transform="translateY("+(-L*2.7)+"px)";
+  $("slider").setAttribute("aria-valuetext","layer "+L+", "+bands.find(x=>L<=x.max).name.split(" ")[0]);
+  const b=bands.find(b=>L<=b.max);
+  const bn=$("bandname"); bn.textContent=b.name; bn.className="band-name "+b.cls;
+  const toks=(DATA.docs[doc][String(L)]||[]);
+  const box=$("chips"); box.textContent=""; box.className="chips"+((CP[L]&&CP[L].c)?" "+CP[L].c:"");
+  toks.forEach((t,i)=>{
+    let disp=t.replace(/\n/g,"⏎"); if(disp.trim()==="")disp="⏎";
+    const c=document.createElement("span");
+    c.textContent=disp;
+    c.className="chip"+(i<1?" r0":i<3?" r1":i<6?" r2 dim":" dimmer");
+    if(SCHEMA.has(t.trim())) c.classList.add("schema");
+    else if(FMT(t)) c.classList.add("fmt");
+    c.style.animationDelay=(i*22)+"ms";
+    box.appendChild(c);
+  });
+}
+$("slider").addEventListener("input",()=>{if(playing){clearInterval(playing);playing=null;$("play").textContent="▶\u00a0 Play the scan";$("play").setAttribute("aria-label","Play the guided scan");}render();});
+function scanDone(){const an=document.getElementById("analogy"),ap=an.parentElement,al=ap.querySelector(".alabel");
+  ap.classList.add("spot");al.textContent="SCAN COMPLETE";an.innerHTML='That was the whole climb &mdash; pixels to first word, dozens of times inside every one-second answer. The deeper study: <a href="index.html">read the research note &#8594;</a>';}
+document.querySelectorAll(".speeds button").forEach(b=>{b.addEventListener("click",()=>{
+  speedMul=parseFloat(b.dataset.s);
+  document.querySelectorAll(".speeds button").forEach(x=>x.setAttribute("aria-checked",x===b?"true":"false"));
+});});
+$("play").addEventListener("click",()=>{
+  if(playing){clearInterval(playing);playing=null;$("play").textContent="▶\u00a0 Play the scan";$("play").setAttribute("aria-label","Play the guided scan");return;}
+  $("play").textContent="⏸\u00a0 Pause";$("play").setAttribute("aria-label","Pause");
+  if(+$("slider").value>=34)$("slider").value=0;
+  (function tick(){
+    playing=setTimeout(()=>{const s=$("slider"); s.value=+s.value+1; render();
+      if(+s.value>=34){playing=null;$("play").textContent="↺\u00a0 Replay the scan";$("play").setAttribute("aria-label","Replay the guided scan");scanDone();return;}
+      tick();
+    }, Math.round((CP[+$("slider").value]?5200:(+$("slider").value<=9?900:(+$("slider").value<=30?1700:2600)))*speedMul));
+  })();
+});
+$("docimg").src=DATA.docs[doc]._img;
+render();
+</script>
+</body>
+</html>

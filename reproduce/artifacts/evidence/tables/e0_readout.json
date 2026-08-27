@@ -1,0 +1,942 @@
+{
+ "model": "Qwen/Qwen2.5-0.5B-Instruct",
+ "n_prompts": 1000,
+ "dim_batch": 16,
+ "device": "cuda",
+ "fit_seconds": 1479,
+ "script": "code/e0_fit.py",
+ "cases": {
+  "boot_currency": {
+   "jlens": {
+    "0": [
+     "/boot",
+     " boot",
+     ".\r\n",
+     " Boot",
+     "\t\r\n",
+     "-boot",
+     " \r\n",
+     " $\r\n"
+    ],
+    "1": [
+     " boot",
+     "/boot",
+     " Boot",
+     " boots",
+     "-boot",
+     "boot",
+     ".\r\n",
+     "BOOT"
+    ],
+    "2": [
+     " \r\n",
+     "   \r\n",
+     "\t\r\n",
+     "  \r\n",
+     " \r\n\r\n",
+     "    \r\n",
+     " boot",
+     ".\r\n"
+    ],
+    "3": [
+     " \r\n",
+     " \r\n\r\n",
+     "   \r\n",
+     " boot",
+     "    \r\n",
+     " Boot",
+     "  \r\n",
+     "\t\r\n"
+    ],
+    "4": [
+     " \r\n",
+     " boot",
+     " boots",
+     ".\r\n",
+     "   \r\n",
+     " Boot",
+     "  \r\n",
+     "    \r\n"
+    ],
+    "5": [
+     " boots",
+     " boot",
+     " \r\n",
+     " Boot",
+     "\u9774",
+     "\u978b",
+     " shoes",
+     " Boots"
+    ],
+    "6": [
+     " \r\n",
+     ".\r\n",
+     " boots",
+     " boot",
+     "\u9774",
+     "\u978b",
+     " shoes",
+     " Boot"
+    ],
+    "7": [
+     " boots",
+     " \r\n",
+     " boot",
+     "\u9774",
+     ".\r\n",
+     " shoes",
+     "\u978b",
+     " shoe"
+    ],
+    "8": [
+     " boots",
+     " boot",
+     ".\r\n",
+     " shoes",
+     "\u9774",
+     " \r\n",
+     " shoe",
+     "\u978b"
+    ],
+    "9": [
+     " boots",
+     ".\r\n",
+     " boot",
+     "\u9774",
+     " shoes",
+     " shoe",
+     " Boot",
+     "\u978b"
+    ],
+    "10": [
+     " boots",
+     ".\r\n",
+     " boot",
+     " shoes",
+     "\u9774",
+     " shoe",
+     ".\"\r\n",
+     "\u978b"
+    ],
+    "11": [
+     ".\r\n",
+     " boots",
+     "\u978b",
+     "\u9774",
+     " shoes",
+     " boot",
+     ".\"\r\n",
+     " shoe"
+    ],
+    "12": [
+     ".\r\n",
+     " boots",
+     " shoes",
+     " boot",
+     "\u9774",
+     "\u978b",
+     ".\"\r\n",
+     " shoe"
+    ],
+    "13": [
+     ".\r\n",
+     " boots",
+     " shoes",
+     " boot",
+     "\u978b",
+     "\u9774",
+     ".\"\r\n",
+     " shoe"
+    ],
+    "14": [
+     ".\r\n",
+     " boots",
+     " boot",
+     " shoes",
+     "\u978b",
+     "\u9774",
+     ".\"\r\n",
+     " shoe"
+    ],
+    "15": [
+     " boots",
+     "\u9774",
+     "\u978b",
+     " shoes",
+     "-boot",
+     " boot",
+     " footwear",
+     " shoe"
+    ],
+    "16": [
+     "\u9774",
+     " boots",
+     "\u978b",
+     ".\r\n",
+     "/boot",
+     " shoes",
+     "icorn",
+     "-boot"
+    ],
+    "17": [
+     "\u9774",
+     " shoes",
+     " boots",
+     "/boot",
+     ".\r\n",
+     "\u978b",
+     " footwear",
+     "icorn"
+    ],
+    "18": [
+     "\u9774",
+     ".\r\n",
+     " boots",
+     ".\"\r\n",
+     " shoes",
+     "/boot",
+     "?\r\n",
+     "icorn"
+    ],
+    "19": [
+     "\u9774",
+     " is",
+     "\"is",
+     " shoes",
+     " boots",
+     "?\r\n",
+     "\u978b",
+     ".\"\r\n"
+    ],
+    "20": [
+     " is",
+     " consists",
+     " belongs",
+     " was",
+     " contains",
+     "\u662f\u4e00\u5ea7",
+     "\u662f\u4e00\u4e2a",
+     " has"
+    ],
+    "21": [
+     " is",
+     " consists",
+     " has",
+     " was",
+     "\u662f\u4e00\u4e2a",
+     " contains",
+     " belongs",
+     "\u662f\u4e00\u5ea7"
+    ],
+    "22": [
+     " is",
+     " was",
+     " consists",
+     " has",
+     " includes",
+     " contains",
+     " belongs",
+     "\u662f\u4e2d\u56fd"
+    ]
+   },
+   "logit_lens": {
+    "0": [
+     "ic",
+     " lateral",
+     "Category",
+     " Category",
+     "\u953b\u9020",
+     "\u5b50\u91cc",
+     "IC",
+     "ism"
+    ],
+    "1": [
+     "\ufffd",
+     ";",
+     "\u8003\u53e4",
+     " m\u1ebd",
+     " car",
+     "ic",
+     "\u8fbe\u5c14",
+     " mutating"
+    ],
+    "2": [
+     " mutating",
+     " m\u1ebd",
+     " subsystem",
+     "findOrFail",
+     "\ufffd",
+     "SW",
+     "\u6d74",
+     "\u8fbe\u5c14"
+    ],
+    "3": [
+     "sw",
+     "\u8fbe\u5c14",
+     "SW",
+     "-unstyled",
+     "\u8001\u5927",
+     " mutating",
+     "\u8003\u53e4",
+     "\u9c9c"
+    ],
+    "4": [
+     " ElementRef",
+     "\u4e01",
+     "\u9ec4\u8272",
+     "Sp",
+     "ext\u00e9rieur",
+     "\u8fbe\u5c14",
+     " Spe",
+     "findOrFail"
+    ],
+    "5": [
+     "\u4e01",
+     "\u90b6",
+     "\u5cfb",
+     "ext\u00e9rieur",
+     "---------",
+     "\u5730\u7406",
+     "\u536b",
+     "\u9c9c"
+    ],
+    "6": [
+     "\u90b6",
+     "\u4e01",
+     "\u5730\u7406",
+     " ElementRef",
+     "\u7aef\u6b63",
+     "ext\u00e9rieur",
+     "\u5cfb",
+     "SW"
+    ],
+    "7": [
+     "\u4e01",
+     "\u5730\u7406",
+     "\u90b6",
+     "\u80f6",
+     " maman",
+     "-outline",
+     "---------",
+     "ext\u00e9rieur"
+    ],
+    "8": [
+     "\u90b6",
+     "\u5730\u7406",
+     "ext\u00e9rieur",
+     "Transpose",
+     " Geography",
+     " geometry",
+     " repairing",
+     "---------"
+    ],
+    "9": [
+     "\u90b6",
+     "-outline",
+     "-hash",
+     "\u5730\u7406",
+     " repairing",
+     "---------",
+     "/doc",
+     "ext\u00e9rieur"
+    ],
+    "10": [
+     "\u4f0d",
+     "TRAN",
+     "\u4e01",
+     "---------",
+     "ext\u00e9rieur",
+     "/doc",
+     "\u6cbb\u75c5",
+     "\u5730\u7406"
+    ],
+    "11": [
+     "\u4f0d",
+     "\u76f8\u8fde",
+     "-outline",
+     " BindingFlags",
+     "-hash",
+     "\u9178",
+     "\u90b6",
+     "\u6253\u4ed7"
+    ],
+    "12": [
+     "\u76f8\u8fde",
+     "\u65b9\u4f4d",
+     "-outline",
+     "\u4f0d",
+     "mith",
+     "\u6cbb\u75c5",
+     "\u0430\u043d\u0438\u0446",
+     " BindingFlags"
+    ],
+    "13": [
+     "\u65b9\u4f4d",
+     "-outline",
+     "\u6cbb\u75c5",
+     "\u0430\u043d\u0438\u0446",
+     ".SpringBootTest",
+     "TRAN",
+     "\u0434\u043e\u0440\u043e\u0436",
+     " Stat"
+    ],
+    "14": [
+     "\u4e01",
+     "\u0430\u043d\u0438\u0446",
+     "\u65b9\u4f4d",
+     "-outline",
+     " Stat",
+     ".EventSystems",
+     "---------",
+     "\u7384"
+    ],
+    "15": [
+     "\u5728\u5168\u56fd",
+     " Stat",
+     "\u0430\u043d\u0438\u0446",
+     "\u7384",
+     "\u5b9a\u4f4d",
+     "\u738b\u56fd",
+     "\u00a0\u00a0\u00a0",
+     "\u90b6"
+    ],
+    "16": [
+     "-outline",
+     "---------",
+     "-----",
+     " Stat",
+     "--------",
+     "\u7b11\u9053",
+     "\u0430\u043d\u0438\u0446",
+     "\u9178"
+    ],
+    "17": [
+     "\u0430\u043d\u0438\u0446",
+     "\u5e94\u8be5\u662f",
+     "\u4e01",
+     "\u0440\u043e\u0441\u0441",
+     "-outline",
+     "\u5b9a\u4f4d",
+     "mith",
+     " Stat"
+    ],
+    "18": [
+     "mith",
+     "-outline",
+     "\u5e94\u8be5\u662f",
+     "\u94dc",
+     "sw",
+     "-----",
+     "AlmostEqual",
+     "leneck"
+    ],
+    "19": [
+     " is",
+     "\u5e94\u8be5\u662f",
+     "\u662f\u4e00\u5ea7",
+     "\u5305\u5bb9",
+     "\u53cd\u5c04",
+     "leneck",
+     "less",
+     "\u76f4\u5f84"
+    ],
+    "20": [
+     " is",
+     " was",
+     "\u5e94\u8be5\u662f",
+     " belongs",
+     " are",
+     " consists",
+     "\u662f\u4e00\u5ea7",
+     " contains"
+    ],
+    "21": [
+     " is",
+     " consists",
+     " was",
+     " contains",
+     "\u662f\u4e00\u4e2a",
+     " are",
+     "\u662f\u4e00\u5ea7",
+     "ock"
+    ],
+    "22": [
+     " is",
+     " was",
+     " consists",
+     " has",
+     " contains",
+     " called",
+     " are",
+     " in"
+    ]
+   }
+  },
+  "legs_spider": {
+   "jlens": {
+    "0": [
+     " webs",
+     " {@",
+     "webs",
+     " .\r\n",
+     "\r\n\n",
+     ":\\/\\/",
+     " \\\r\n",
+     ".\r\n"
+    ],
+    "1": [
+     " webs",
+     "...\r\n",
+     "\r\n\n",
+     "webs",
+     " .\r\n",
+     " web",
+     " WEB",
+     " {@"
+    ],
+    "2": [
+     " webs",
+     " .\r\n",
+     "...\r\n",
+     "webs",
+     "...'\n",
+     "\r\n\n",
+     " web",
+     " WEB"
+    ],
+    "3": [
+     " webs",
+     "...'\n",
+     "...\r\n",
+     "webs",
+     "'\r\n",
+     ".\r\n",
+     "..\n",
+     " {@"
+    ],
+    "4": [
+     " webs",
+     "webs",
+     " {@",
+     "...'\n",
+     ".'\n",
+     "{@",
+     " web",
+     " spider"
+    ],
+    "5": [
+     " webs",
+     "webs",
+     ".'\n",
+     "...'\n",
+     " spider",
+     "..\n",
+     "\u8718\u86db",
+     "@Web"
+    ],
+    "6": [
+     " webs",
+     "webs",
+     ":\\/\\/",
+     ".'\n",
+     " spider",
+     "...'\n",
+     " spiders",
+     "\u8681"
+    ],
+    "7": [
+     " webs",
+     "webs",
+     "...'\n",
+     ".'\n",
+     " spiders",
+     " spider",
+     ":\\/\\/",
+     "@Web"
+    ],
+    "8": [
+     " webs",
+     "webs",
+     " spiders",
+     " spider",
+     ".'\n",
+     "...'\n",
+     " weaving",
+     "\u8718\u86db"
+    ],
+    "9": [
+     " webs",
+     " spiders",
+     " spider",
+     "webs",
+     ".'\n",
+     " weaving",
+     " fibers",
+     "\u8681"
+    ],
+    "10": [
+     " webs",
+     " spiders",
+     " spider",
+     ".'\n",
+     "webs",
+     " weaving",
+     ".\r\n",
+     ".';\n"
+    ],
+    "11": [
+     " webs",
+     ".'\n",
+     " spiders",
+     " spider",
+     "webs",
+     "!'\n",
+     ".';\n",
+     ".\r\n"
+    ],
+    "12": [
+     " webs",
+     ".'\n",
+     " spiders",
+     ".\r\n",
+     " spider",
+     ".;\n",
+     "webs",
+     ".\n"
+    ],
+    "13": [
+     ".\r\n",
+     ".'\n",
+     " webs",
+     ".;\n",
+     " spiders",
+     ".';\n",
+     ".\n",
+     "webs"
+    ],
+    "14": [
+     "\uff1f\n",
+     " webs",
+     "?\r\n",
+     "?\n",
+     ".;\n",
+     " spiders",
+     ".'\n",
+     " spider"
+    ],
+    "15": [
+     "\uff1f\n",
+     " webs",
+     "?\r\n",
+     "?\n",
+     " ?\n",
+     ".;\n",
+     " spiders",
+     "?\\"
+    ],
+    "16": [
+     "\uff1f\n",
+     "?\n",
+     ".;\n",
+     "?\r\n",
+     "?;\n",
+     "?<",
+     ".*\n",
+     "?)\n"
+    ],
+    "17": [
+     "?\r\n",
+     " spiders",
+     "?<",
+     "?\n",
+     "\uff1f\n",
+     " spider",
+     ":\\/\\/",
+     ".;\n"
+    ],
+    "18": [
+     "?\r\n",
+     " spiders",
+     "?\n",
+     " spider",
+     "\uff1f\n",
+     "?<",
+     ".;\n",
+     ":\\/\\/"
+    ],
+    "19": [
+     "?\n",
+     "\uff1f\n",
+     "?\r\n",
+     "?</",
+     ":\\/\\/",
+     "?',\n",
+     ".;\n",
+     ":\n"
+    ],
+    "20": [
+     " is",
+     " depends",
+     " belongs",
+     " has",
+     " varies",
+     " consists",
+     " determines",
+     " isn"
+    ],
+    "21": [
+     " is",
+     " has",
+     " belongs",
+     " depends",
+     " isn",
+     " can",
+     " does",
+     " should"
+    ],
+    "22": [
+     " is",
+     " belongs",
+     " depends",
+     " has",
+     " isn",
+     " determines",
+     " represents",
+     " varies"
+    ]
+   },
+   "logit_lens": {
+    "0": [
+     "\u90b6",
+     "\ub918",
+     "itic",
+     "iste",
+     "cheme",
+     " Polo",
+     " cena",
+     ".MouseAdapter"
+    ],
+    "1": [
+     " cena",
+     "\ufffd",
+     ".MouseAdapter",
+     "\u90b6",
+     "iste",
+     " Asi",
+     "eco",
+     "itic"
+    ],
+    "2": [
+     " cena",
+     "iste",
+     "\u7409",
+     "istar",
+     "ema",
+     "\u879f",
+     "itic",
+     "\u845a"
+    ],
+    "3": [
+     " cena",
+     "eco",
+     "\u0438\u0440\u0443\u044e\u0449",
+     "\u673d",
+     "\ub918",
+     "\u6f2a",
+     "\u4ea7\u540e",
+     "\u879f"
+    ],
+    "4": [
+     "\u7409",
+     "icone",
+     "\u879f",
+     "\u517c",
+     "\u7b51",
+     "\u9e2f",
+     " cena",
+     "orting"
+    ],
+    "5": [
+     " cena",
+     "\u7409",
+     "midd",
+     ".HttpSession",
+     "simulate",
+     "dataGridView",
+     "rosis",
+     " mouseY"
+    ],
+    "6": [
+     "dataGridView",
+     "\u517c",
+     "\u5e76\u5728",
+     "-prepend",
+     "binding",
+     "\u0430\u043d\u0438\u0446",
+     " repmat",
+     "apo"
+    ],
+    "7": [
+     "\u5e76\u5728",
+     "\u0438\u0440\u0443\u044e\u0449",
+     "\u5e76\u5c06",
+     "binding",
+     " repmat",
+     "eya",
+     "\u90b6",
+     "\u7409"
+    ],
+    "8": [
+     "\u0438\u0440\u0443\u044e\u0449",
+     "\u90b6",
+     "\u0430\u043d\u0438\u0446",
+     "dataGridView",
+     "\u9e2f",
+     "\u73a2",
+     " dataIndex",
+     "ansa"
+    ],
+    "9": [
+     "\u90b6",
+     "dataGridView",
+     "\u0438\u0440\u0443\u044e\u0449",
+     "\u9e2f",
+     "\u6cbb\u75c5",
+     "\u8ba7",
+     "\u7720",
+     "-bordered"
+    ],
+    "10": [
+     "\u90b6",
+     "\u0438\u0440\u0443\u044e\u0449",
+     "dataGridView",
+     "\u9e2f",
+     "\u5b81",
+     "\u6cbb\u75c5",
+     "\u0430\u043d\u0438\u0446",
+     "orting"
+    ],
+    "11": [
+     "\u90b6",
+     "\u0438\u0440\u0443\u044e\u0449",
+     "\u73a2",
+     "\u9e2f",
+     "\u7409",
+     "\u6cbb\u75c5",
+     "-bordered",
+     "\u582a"
+    ],
+    "12": [
+     "\u90b6",
+     "\u7409",
+     "\u0438\u0440\u0443\u044e\u0449",
+     "binding",
+     "-bordered",
+     "\ubc1b",
+     ".Xna",
+     "\u6cbb\u75c5"
+    ],
+    "13": [
+     "\u90b6",
+     "\u0438\u0440\u0443\u044e\u0449",
+     "\u7409",
+     "\u582a",
+     "-bordered",
+     "\u845a",
+     "\u5b81",
+     "\ufffd\ufffd"
+    ],
+    "14": [
+     "\u879f",
+     "\u90b6",
+     "\u80bc",
+     "\u845a",
+     "\u7409",
+     "\u4e00\u751f",
+     "binding",
+     "-bordered"
+    ],
+    "15": [
+     "\u879f",
+     "\u90b6",
+     "\u0430\u043d\u0438\u0446",
+     "\u662f\u975e",
+     "\u9274\u5b9a",
+     "\u8c03\u52a8",
+     "\u4e00\u751f",
+     "binding"
+    ],
+    "16": [
+     "\u879f",
+     "\u6f02",
+     "\u8c03\u52a8",
+     "attachment",
+     " drifting",
+     "\u7ed3\u6676",
+     " Zukunft",
+     "binding"
+    ],
+    "17": [
+     "\u6f02",
+     "\u662f\u975e",
+     "\u879f",
+     ".HttpSession",
+     "\u4e00\u751f",
+     "/sw",
+     "\u5e76\u5728",
+     " b\u00e9n\u00e9"
+    ],
+    "18": [
+     "\u6f02",
+     " tonight",
+     "?",
+     " is",
+     "\u879f",
+     " b\u00e9n\u00e9",
+     " today",
+     "\u05e9"
+    ],
+    "19": [
+     " is",
+     " at",
+     " during",
+     "\u6700\u591a",
+     " tonight",
+     " =",
+     " today",
+     "?"
+    ],
+    "20": [
+     " is",
+     " =",
+     "\u6700\u591a",
+     " at",
+     " should",
+     " might",
+     " in",
+     "_"
+    ],
+    "21": [
+     " is",
+     " should",
+     " depends",
+     " might",
+     " at",
+     " may",
+     " correctly",
+     " tonight"
+    ],
+    "22": [
+     " is",
+     " and",
+     " at",
+     " might",
+     " during",
+     " in",
+     " while",
+     " will"
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,47 @@
+{
+ "12": {
+  "f": 0.487,
+  "rho": -0.003,
+  "kappa_med_P1": 0.19,
+  "kappa_med_P4": 0.2,
+  "kappa_med_P5": 0.17,
+  "bmlp_med_P1": 1.37,
+  "bmlp_med_P5": 0.42
+ },
+ "16": {
+  "f": 0.735,
+  "rho": -0.043,
+  "kappa_med_P1": 0.18,
+  "kappa_med_P4": 0.22,
+  "kappa_med_P5": 0.18,
+  "bmlp_med_P1": 1.52,
+  "bmlp_med_P5": 0.47
+ },
+ "21": {
+  "f": 0.695,
+  "rho": 0.003,
+  "kappa_med_P1": 0.22,
+  "kappa_med_P4": 0.25,
+  "kappa_med_P5": 0.21,
+  "bmlp_med_P1": 1.45,
+  "bmlp_med_P5": 0.55
+ },
+ "26": {
+  "f": 0.375,
+  "rho": 0.081,
+  "kappa_med_P1": 0.29,
+  "kappa_med_P4": 0.29,
+  "kappa_med_P5": 0.23,
+  "bmlp_med_P1": 1.28,
+  "bmlp_med_P5": 0.77
+ },
+ "30": {
+  "f": 0.185,
+  "rho": -0.059,
+  "kappa_med_P1": 0.66,
+  "kappa_med_P4": 0.26,
+  "kappa_med_P5": 0.52,
+  "bmlp_med_P1": 1.18,
+  "bmlp_med_P5": 1.37
+ }
+}

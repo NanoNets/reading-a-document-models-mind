@@ -1,0 +1,24 @@
+This release is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+Vendored third-party code
+-------------------------
+code/vendor-jacobian-lens/ is a vendored copy of
+
+    anthropics/jacobian-lens
+    https://github.com/anthropics/jacobian-lens
+    commit 581d398613e5602a5af361e1c34d3a92ea82ba8e
+    License: Apache-2.0 (its LICENSE file is retained in the vendored directory)
+
+the reference implementation accompanying "Verbalizable Representations Form a
+Global Workspace in Language Models" (transformer-circuits.pub/2026/workspace).
+It is vendored unmodified; our adapter for vision-language models lives outside
+it, in code/jlens_vlm.py. Re-clone at the pinned SHA to verify.
+
+Data attribution
+----------------
+- data/prompts_wikitext_1000.json contains excerpts of WikiText-103
+  (Merity et al.), distributed under CC BY-SA 3.0.
+- data/e1_docs_900.json contains DocILE document IDENTIFIERS only. The DocILE
+  benchmark (Simsa et al., https://docile.rossum.ai/) requires registration;
+  its documents are NOT redistributed here. data/e3_labels.json contains
+  page-level metadata derived from DocILE annotations.

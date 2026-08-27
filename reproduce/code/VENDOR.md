@@ -1,0 +1,1 @@
+Vendored (untracked) dependency: github.com/anthropics/jacobian-lens @ 581d398613e5602a5af361e1c34d3a92ea82ba8e (Apache-2.0), cloned 2026-08-25 into code/vendor-jacobian-lens/. Re-clone at this SHA to reproduce.

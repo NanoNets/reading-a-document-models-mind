@@ -1,0 +1,817 @@
+{
+ "seed": "clean-forwards-only",
+ "n": 80,
+ "prompts": {
+  "P1": "Does the line-item table contain more than 4 line items? Answer Yes or No.",
+  "P2": "How many line items does the table contain? Answer with a number.",
+  "P3": "stored report_geom"
+ },
+ "summary": {
+  "count_thresh_acc": 0.6,
+  "exact_count_top1": 0.25,
+  "exact_count_pm1": 0.45,
+  "tall_baseline_acc": 0.5
+ },
+ "per_doc": [
+  {
+   "doc": "2517e048b53f4a38b9b96b26",
+   "n_line_items": 5,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.5434017181396484,
+   "count_pred": 1,
+   "count_logits_true": 26.478832244873047,
+   "tall_margin": -0.8490810394287109
+  },
+  {
+   "doc": "19ba0e07c94643938ebd7f6e",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.7085723876953125,
+   "count_pred": 2,
+   "count_logits_true": 27.904098510742188,
+   "tall_margin": -0.9178733825683594
+  },
+  {
+   "doc": "1dbf85ed259c4753886663d7",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.5813350677490234,
+   "count_pred": 1,
+   "count_logits_true": 26.74405860900879,
+   "tall_margin": -0.7374935150146484
+  },
+  {
+   "doc": "26907d956bb44857a595ec70",
+   "n_line_items": 6,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.46300506591796875,
+   "count_pred": 1,
+   "count_logits_true": 26.06178092956543,
+   "tall_margin": -0.5592823028564453
+  },
+  {
+   "doc": "225fb43160654f5aa4836f89",
+   "n_line_items": 2,
+   "tall": true,
+   "many_rows": false,
+   "count_thresh_margin": -0.15647506713867188,
+   "count_pred": 2,
+   "count_logits_true": 27.105682373046875,
+   "tall_margin": -0.422607421875
+  },
+  {
+   "doc": "17fb3b3fc1d44c76902b584a",
+   "n_line_items": 3,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.3568992614746094,
+   "count_pred": 1,
+   "count_logits_true": 25.999332427978516,
+   "tall_margin": -0.8886871337890625
+  },
+  {
+   "doc": "1e601fd2b16a42ea99ab10b8",
+   "n_line_items": 9,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.4414501190185547,
+   "count_pred": 1,
+   "count_logits_true": 24.701841354370117,
+   "tall_margin": -0.5463104248046875
+  },
+  {
+   "doc": "171430bada024d70b5751503",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -1.0536384582519531,
+   "count_pred": 2,
+   "count_logits_true": 27.774856567382812,
+   "tall_margin": -0.9159049987792969
+  },
+  {
+   "doc": "1b5a195fcb8b49dda490d925",
+   "n_line_items": 11,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": 0.13371658325195312,
+   "count_pred": 1,
+   "count_logits_true": null,
+   "tall_margin": -0.6035270690917969
+  },
+  {
+   "doc": "1eaa36e8d41e4cda9e43169d",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.7154579162597656,
+   "count_pred": 1,
+   "count_logits_true": 26.428749084472656,
+   "tall_margin": -0.31561279296875
+  },
+  {
+   "doc": "1e49090141bd4aba843e381a",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.7209053039550781,
+   "count_pred": 1,
+   "count_logits_true": 27.65261459350586,
+   "tall_margin": -0.8838825225830078
+  },
+  {
+   "doc": "212ed0a60b86497c820d37a3",
+   "n_line_items": 7,
+   "tall": false,
+   "many_rows": true,
+   "count_thresh_margin": -0.4301490783691406,
+   "count_pred": 1,
+   "count_logits_true": 27.25028419494629,
+   "tall_margin": -0.2852134704589844
+  },
+  {
+   "doc": "25deee8ad3654b63a95ad02a",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.3184776306152344,
+   "count_pred": 2,
+   "count_logits_true": 26.849590301513672,
+   "tall_margin": -0.5984516143798828
+  },
+  {
+   "doc": "2529756418f04f85aa3174b4",
+   "n_line_items": 4,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.6144447326660156,
+   "count_pred": 3,
+   "count_logits_true": 26.630672454833984,
+   "tall_margin": -0.6299247741699219
+  },
+  {
+   "doc": "1925d1e1a8114287905a7864",
+   "n_line_items": 6,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.12643814086914062,
+   "count_pred": 1,
+   "count_logits_true": 26.146648406982422,
+   "tall_margin": -0.5435295104980469
+  },
+  {
+   "doc": "1252e1852f04473d95d1fb0f",
+   "n_line_items": 6,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.10723686218261719,
+   "count_pred": 1,
+   "count_logits_true": 24.838865280151367,
+   "tall_margin": -0.45799827575683594
+  },
+  {
+   "doc": "15c90520d68141fbb099ca52",
+   "n_line_items": 2,
+   "tall": true,
+   "many_rows": false,
+   "count_thresh_margin": -0.09138107299804688,
+   "count_pred": 2,
+   "count_logits_true": 27.852048873901367,
+   "tall_margin": -0.3746070861816406
+  },
+  {
+   "doc": "2687a725b80b4ed7891bfa08",
+   "n_line_items": 9,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": 0.0355987548828125,
+   "count_pred": 1,
+   "count_logits_true": 25.24239730834961,
+   "tall_margin": -0.47463035583496094
+  },
+  {
+   "doc": "1f28cb4d884441a9beae8e7b",
+   "n_line_items": 5,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.6311702728271484,
+   "count_pred": 1,
+   "count_logits_true": 25.215177536010742,
+   "tall_margin": -1.0605239868164062
+  },
+  {
+   "doc": "269a887b1a3f4215ab9b6a31",
+   "n_line_items": 4,
+   "tall": true,
+   "many_rows": false,
+   "count_thresh_margin": -0.5126552581787109,
+   "count_pred": 1,
+   "count_logits_true": 26.16378402709961,
+   "tall_margin": -1.001688003540039
+  },
+  {
+   "doc": "14e345a2f399448dac2a25ee",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -1.0063323974609375,
+   "count_pred": 2,
+   "count_logits_true": 28.255064010620117,
+   "tall_margin": -0.7359619140625
+  },
+  {
+   "doc": "255c84078645487a810882e8",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.805877685546875,
+   "count_pred": 3,
+   "count_logits_true": 25.65733528137207,
+   "tall_margin": -0.5426788330078125
+  },
+  {
+   "doc": "17b2939035254d6387fb41dd",
+   "n_line_items": 12,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.09061813354492188,
+   "count_pred": 1,
+   "count_logits_true": null,
+   "tall_margin": -0.5492801666259766
+  },
+  {
+   "doc": "1e4a217d9e194fa69d03155e",
+   "n_line_items": 17,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.37570762634277344,
+   "count_pred": 1,
+   "count_logits_true": null,
+   "tall_margin": -1.1490859985351562
+  },
+  {
+   "doc": "208cb9d93a164fd498366674",
+   "n_line_items": 10,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.43393898010253906,
+   "count_pred": 1,
+   "count_logits_true": null,
+   "tall_margin": -1.0783824920654297
+  },
+  {
+   "doc": "17a71ce095174897aa644580",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.8412303924560547,
+   "count_pred": 1,
+   "count_logits_true": 26.468061447143555,
+   "tall_margin": -0.876739501953125
+  },
+  {
+   "doc": "2269a9fb4fd74cb69dc14216",
+   "n_line_items": 4,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.1820354461669922,
+   "count_pred": 4,
+   "count_logits_true": 26.82984161376953,
+   "tall_margin": -0.5848274230957031
+  },
+  {
+   "doc": "1fbae8915c3e4e1c83d33cd0",
+   "n_line_items": 22,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.2849388122558594,
+   "count_pred": 1,
+   "count_logits_true": null,
+   "tall_margin": -0.4366741180419922
+  },
+  {
+   "doc": "222b1ba3d69c45b08ac37ffd",
+   "n_line_items": 4,
+   "tall": true,
+   "many_rows": false,
+   "count_thresh_margin": -0.3167266845703125,
+   "count_pred": 4,
+   "count_logits_true": 27.994205474853516,
+   "tall_margin": -1.0407085418701172
+  },
+  {
+   "doc": "218ad881d49b47d3be52803b",
+   "n_line_items": 4,
+   "tall": true,
+   "many_rows": false,
+   "count_thresh_margin": -0.4583740234375,
+   "count_pred": 4,
+   "count_logits_true": 28.60814094543457,
+   "tall_margin": -0.5341014862060547
+  },
+  {
+   "doc": "132f9195c9bd41eeb946a29b",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.6656970977783203,
+   "count_pred": 1,
+   "count_logits_true": 26.376699447631836,
+   "tall_margin": -0.3678150177001953
+  },
+  {
+   "doc": "139f55b44205464b9291dcb7",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.6846294403076172,
+   "count_pred": 1,
+   "count_logits_true": 26.723718643188477,
+   "tall_margin": -0.7321147918701172
+  },
+  {
+   "doc": "21515005773b45f19a0eac62",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.9482192993164062,
+   "count_pred": 2,
+   "count_logits_true": 28.33251190185547,
+   "tall_margin": -0.8742237091064453
+  },
+  {
+   "doc": "25213fcd929c4bed86209908",
+   "n_line_items": 3,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.49106597900390625,
+   "count_pred": 7,
+   "count_logits_true": 26.9566650390625,
+   "tall_margin": -1.0260696411132812
+  },
+  {
+   "doc": "1b7a1b6ae00f4bdaa3f355f3",
+   "n_line_items": 3,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.4656391143798828,
+   "count_pred": 4,
+   "count_logits_true": 25.295333862304688,
+   "tall_margin": -0.77520751953125
+  },
+  {
+   "doc": "1225162e668841dfa5ac3fec",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.8369579315185547,
+   "count_pred": 2,
+   "count_logits_true": 29.12958335876465,
+   "tall_margin": -0.7311344146728516
+  },
+  {
+   "doc": "16fce4dbecdb4a18a1ed0501",
+   "n_line_items": 4,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.7218570709228516,
+   "count_pred": 1,
+   "count_logits_true": 25.69533920288086,
+   "tall_margin": -1.040924072265625
+  },
+  {
+   "doc": "1fdcd37eb197476d9cafe3f4",
+   "n_line_items": 12,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.823699951171875,
+   "count_pred": 1,
+   "count_logits_true": null,
+   "tall_margin": -1.0584831237792969
+  },
+  {
+   "doc": "1351e5180dc549dba4a37634",
+   "n_line_items": 7,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.06966018676757812,
+   "count_pred": 1,
+   "count_logits_true": 25.39649200439453,
+   "tall_margin": -0.052692413330078125
+  },
+  {
+   "doc": "16215531eb5f4e139553bed4",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -1.443572998046875,
+   "count_pred": 2,
+   "count_logits_true": 29.03435516357422,
+   "tall_margin": -0.8698062896728516
+  },
+  {
+   "doc": "1c8d57806acb4d6cb6dcb4d6",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.6125335693359375,
+   "count_pred": 2,
+   "count_logits_true": 28.625734329223633,
+   "tall_margin": -0.5898113250732422
+  },
+  {
+   "doc": "2144ce5477e74e889c85f90b",
+   "n_line_items": 3,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.3887062072753906,
+   "count_pred": 1,
+   "count_logits_true": 28.53740692138672,
+   "tall_margin": -0.8161468505859375
+  },
+  {
+   "doc": "155fc07a1f39462e908c11d5",
+   "n_line_items": 3,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.613677978515625,
+   "count_pred": 3,
+   "count_logits_true": 26.60309410095215,
+   "tall_margin": -0.6311454772949219
+  },
+  {
+   "doc": "1c04f6eb0f1d4f73ab40e46b",
+   "n_line_items": 12,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.5144901275634766,
+   "count_pred": 1,
+   "count_logits_true": null,
+   "tall_margin": -0.6126270294189453
+  },
+  {
+   "doc": "241675322dc74d61ba0496fe",
+   "n_line_items": 25,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.7110233306884766,
+   "count_pred": 1,
+   "count_logits_true": null,
+   "tall_margin": -0.955413818359375
+  },
+  {
+   "doc": "1d49f6732f6b440bbd01757f",
+   "n_line_items": 13,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.3546295166015625,
+   "count_pred": 1,
+   "count_logits_true": null,
+   "tall_margin": -0.6671504974365234
+  },
+  {
+   "doc": "18439ef6749143139897637e",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -1.1627120971679688,
+   "count_pred": 2,
+   "count_logits_true": 27.748109817504883,
+   "tall_margin": -0.4257373809814453
+  },
+  {
+   "doc": "1ee0b4d2d44c494386ad353f",
+   "n_line_items": 31,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.3130512237548828,
+   "count_pred": 1,
+   "count_logits_true": null,
+   "tall_margin": -0.5443344116210938
+  },
+  {
+   "doc": "2514dc49fb9a42dfbd090788",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -1.2529964447021484,
+   "count_pred": 1,
+   "count_logits_true": 27.812252044677734,
+   "tall_margin": -0.8551921844482422
+  },
+  {
+   "doc": "1bbaa5414efb4526ba717f61",
+   "n_line_items": 3,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.6858444213867188,
+   "count_pred": 1,
+   "count_logits_true": 26.208696365356445,
+   "tall_margin": -0.9201488494873047
+  },
+  {
+   "doc": "254e339b4f25403681f181a0",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.4579181671142578,
+   "count_pred": 3,
+   "count_logits_true": 27.81067657470703,
+   "tall_margin": -0.461639404296875
+  },
+  {
+   "doc": "2600c932312d41018911df7a",
+   "n_line_items": 3,
+   "tall": true,
+   "many_rows": false,
+   "count_thresh_margin": -0.2883415222167969,
+   "count_pred": 1,
+   "count_logits_true": 25.152313232421875,
+   "tall_margin": -0.6433258056640625
+  },
+  {
+   "doc": "1cc33092494a4971acda333f",
+   "n_line_items": 8,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.7175807952880859,
+   "count_pred": 2,
+   "count_logits_true": 25.787626266479492,
+   "tall_margin": -0.8908843994140625
+  },
+  {
+   "doc": "1a9d2e3c885940f794a6cb88",
+   "n_line_items": 3,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.5993766784667969,
+   "count_pred": 1,
+   "count_logits_true": 25.840303421020508,
+   "tall_margin": -0.6604366302490234
+  },
+  {
+   "doc": "21c81e58fd6344a9bde2ae74",
+   "n_line_items": 4,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.910614013671875,
+   "count_pred": 2,
+   "count_logits_true": 26.612749099731445,
+   "tall_margin": -0.634002685546875
+  },
+  {
+   "doc": "1dd6c18895e34d1792a73bd1",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -1.2641639709472656,
+   "count_pred": 2,
+   "count_logits_true": 29.1368408203125,
+   "tall_margin": -0.8864955902099609
+  },
+  {
+   "doc": "1fa4cc6738e84eae8996e5d3",
+   "n_line_items": 7,
+   "tall": false,
+   "many_rows": true,
+   "count_thresh_margin": -0.1326160430908203,
+   "count_pred": 7,
+   "count_logits_true": 24.386205673217773,
+   "tall_margin": -0.5898818969726562
+  },
+  {
+   "doc": "15e34c7ce3274ac6aaec15ee",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.18659591674804688,
+   "count_pred": 1,
+   "count_logits_true": 25.624279022216797,
+   "tall_margin": -0.4363517761230469
+  },
+  {
+   "doc": "1396936931534c1b9d1fa73d",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.897735595703125,
+   "count_pred": 2,
+   "count_logits_true": 27.236967086791992,
+   "tall_margin": -0.6471138000488281
+  },
+  {
+   "doc": "255899587769492d80bba8c1",
+   "n_line_items": 10,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.26212501525878906,
+   "count_pred": 1,
+   "count_logits_true": null,
+   "tall_margin": -0.6330547332763672
+  },
+  {
+   "doc": "25648bc5c9ac47cf87d0add1",
+   "n_line_items": 5,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.559600830078125,
+   "count_pred": 1,
+   "count_logits_true": 26.011442184448242,
+   "tall_margin": -0.43959617614746094
+  },
+  {
+   "doc": "20f95f7a037249c8bf7b0f70",
+   "n_line_items": 4,
+   "tall": true,
+   "many_rows": false,
+   "count_thresh_margin": -0.20350074768066406,
+   "count_pred": 1,
+   "count_logits_true": 25.115154266357422,
+   "tall_margin": -0.3771533966064453
+  },
+  {
+   "doc": "173bb2512a9b4540b94279b7",
+   "n_line_items": 23,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.4536018371582031,
+   "count_pred": 1,
+   "count_logits_true": null,
+   "tall_margin": -0.7850799560546875
+  },
+  {
+   "doc": "149165f132f14c4995d7516a",
+   "n_line_items": 13,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.07515144348144531,
+   "count_pred": 1,
+   "count_logits_true": null,
+   "tall_margin": -0.5852336883544922
+  },
+  {
+   "doc": "1259e94325c040ebbf7d608e",
+   "n_line_items": 11,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.6657581329345703,
+   "count_pred": 1,
+   "count_logits_true": null,
+   "tall_margin": -1.08544921875
+  },
+  {
+   "doc": "20536aece7ce43caa0b5cbcb",
+   "n_line_items": 9,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.1283111572265625,
+   "count_pred": 1,
+   "count_logits_true": 26.63848876953125,
+   "tall_margin": -0.4735145568847656
+  },
+  {
+   "doc": "1adbb4c130754e8483d2172c",
+   "n_line_items": 5,
+   "tall": false,
+   "many_rows": true,
+   "count_thresh_margin": -0.3853492736816406,
+   "count_pred": 5,
+   "count_logits_true": 24.616497039794922,
+   "tall_margin": -0.8699378967285156
+  },
+  {
+   "doc": "18cd7955d2be40dbba42025d",
+   "n_line_items": 3,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.7274227142333984,
+   "count_pred": 1,
+   "count_logits_true": 25.86354637145996,
+   "tall_margin": -0.8293838500976562
+  },
+  {
+   "doc": "17da065115664ff98e0ed92e",
+   "n_line_items": 2,
+   "tall": true,
+   "many_rows": false,
+   "count_thresh_margin": -0.5390377044677734,
+   "count_pred": 1,
+   "count_logits_true": 25.36861801147461,
+   "tall_margin": -0.699615478515625
+  },
+  {
+   "doc": "1f31e657f2b142da9b30a30b",
+   "n_line_items": 7,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.3786811828613281,
+   "count_pred": 5,
+   "count_logits_true": 26.648618698120117,
+   "tall_margin": -0.33299827575683594
+  },
+  {
+   "doc": "254cbb70ee664c89b532dde7",
+   "n_line_items": 8,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.14210891723632812,
+   "count_pred": 1,
+   "count_logits_true": 25.968469619750977,
+   "tall_margin": -0.696533203125
+  },
+  {
+   "doc": "20f46b83489647ad978dbfdc",
+   "n_line_items": 4,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.044891357421875,
+   "count_pred": 3,
+   "count_logits_true": 25.81673812866211,
+   "tall_margin": -0.5576229095458984
+  },
+  {
+   "doc": "21d842ff6c304960b5995b88",
+   "n_line_items": 12,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.2750892639160156,
+   "count_pred": 1,
+   "count_logits_true": null,
+   "tall_margin": -0.6634578704833984
+  },
+  {
+   "doc": "1b3a76287b0c44d1855a43e4",
+   "n_line_items": 10,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.33161163330078125,
+   "count_pred": 1,
+   "count_logits_true": null,
+   "tall_margin": -0.6062278747558594
+  },
+  {
+   "doc": "200bf3ecb6c5435db42bb4e7",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.8283901214599609,
+   "count_pred": 1,
+   "count_logits_true": 26.6709041595459,
+   "tall_margin": -0.7060298919677734
+  },
+  {
+   "doc": "1e0980d733dd4518899a24ac",
+   "n_line_items": 21,
+   "tall": true,
+   "many_rows": true,
+   "count_thresh_margin": -0.4659137725830078,
+   "count_pred": 2,
+   "count_logits_true": null,
+   "tall_margin": -0.6921310424804688
+  },
+  {
+   "doc": "230fccbafe7b468e82dd3881",
+   "n_line_items": 2,
+   "tall": true,
+   "many_rows": false,
+   "count_thresh_margin": -0.5713996887207031,
+   "count_pred": 1,
+   "count_logits_true": 28.08453369140625,
+   "tall_margin": -0.8733654022216797
+  },
+  {
+   "doc": "1cb927499d9e4e35b81964c7",
+   "n_line_items": 2,
+   "tall": false,
+   "many_rows": false,
+   "count_thresh_margin": -0.7003612518310547,
+   "count_pred": 2,
+   "count_logits_true": 27.824520111083984,
+   "tall_margin": -1.2102394104003906
+  },
+  {
+   "doc": "1c3e403b844147708a1a3a7d",
+   "n_line_items": 4,
+   "tall": true,
+   "many_rows": false,
+   "count_thresh_margin": -0.15589523315429688,
+   "count_pred": 9,
+   "count_logits_true": 26.131834030151367,
+   "tall_margin": -0.5338516235351562
+  },
+  {
+   "doc": "17df60bc12db43249abb50c4",
+   "n_line_items": 5,
+   "tall": false,
+   "many_rows": true,
+   "count_thresh_margin": -0.5366897583007812,
+   "count_pred": 1,
+   "count_logits_true": 25.74539566040039,
+   "tall_margin": -0.7906436920166016
+  }
+ ]
+}

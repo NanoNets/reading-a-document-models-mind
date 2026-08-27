@@ -1,0 +1,220 @@
+/* ============================================================================
+   nn-blog.css — the nanonets.com/blog design system
+   Extracted verbatim from blog-drafts/07-self-evolving-agents/ghost.html, the
+   replica measured against the live blog (what-is-a-context-graph, 2026-08-18).
+   Do NOT restyle from nanonets-map/repos/ghost-blog-theme/ — that theme is not
+   what the live blog runs.
+
+   Light-only by design: the live blog is light-only, so a faithful preview
+   must be too. body carries an explicit --bg because a transparent body would
+   borrow a dark host background and the preview would lie.
+
+   a11y: --accent #546fff measures 4.12:1 on white and FAILS WCAG AA for body
+   text. Rules and accents only; prose blue is #2c3a72 (10.1:1).
+   ============================================================================ */
+
+/* Style contract measured from the live nanonets.com/blog (what-is-a-context-graph, fetched 2026-08-18):
+   DM Sans headings (h1 400/40px/-1px), system-font body 18px/160%/-0.18px #131315, 748px column,
+   left TOC rail, accent #546FFF, cards #F7F8FA r14 border rgba(20,24,31,.1). Light-only, like the site. */
+:root {
+  --ink: #131315;
+  --grey: #7a828e;
+  --grey-2: #6e7480;
+  --hairline: rgba(20, 24, 31, 0.1);
+  --hairline-2: #e6e8ec;
+  --surface: #f7f8fa;
+  --accent: #546fff;
+  --accent-soft: #e8edff;
+  --ink-label: #1a1a1a;   /* tokenized: was hardcoded on dot-labels */
+  --drift: #b91c1c;
+  --bg: #ffffff;
+  --heading-font: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --body-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body-font);
+  font-size: 18px;
+  line-height: 160%;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+.page {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 748px);
+  gap: 72px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 56px 32px 112px;
+}
+/* ---- TOC rail ---- */
+.rail { position: relative; }
+.rail-inner { position: sticky; top: 40px; }
+.rail h3 {
+  font-family: var(--heading-font);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink); margin: 0 0 14px;
+}
+.toc { list-style: none; margin: 0; padding: 0; }
+.toc li { margin: 0; }
+.toc a {
+  display: block; padding: 6px 0 6px 12px; border-left: 2px solid transparent;
+  font-size: 12.5px; line-height: 145%; color: var(--grey-2); text-decoration: none;
+}
+.toc a:hover { color: var(--ink); }
+.toc a.active { color: var(--accent); border-left-color: var(--accent); }
+.rail .share {
+  margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--hairline-2);
+  font-family: var(--heading-font);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--grey-2);
+}
+/* ---- Post header ---- */
+h1 {
+  font-family: var(--heading-font);
+  font-size: 40px; font-weight: 400; line-height: 110%; letter-spacing: -1px;
+  margin: 0 0 16px; text-wrap: balance;
+}
+.post-header { border-bottom: 1px solid var(--hairline-2); margin-bottom: 32px; }
+.byline { display: flex; align-items: center; gap: 10px; padding: 14px 0 18px; font-size: 15px; color: var(--ink); }
+.byline .avatar {
+  width: 32px; height: 32px; border-radius: 50%; background: var(--accent-soft); color: var(--accent);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--heading-font); font-size: 14px; font-weight: 700; flex-shrink: 0;
+}
+.byline .sep { color: var(--grey); }
+.byline .draft-pill {
+  font-family: var(--heading-font); font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--accent); background: var(--accent-soft);
+  border-radius: 999px; padding: 3px 10px;
+}
+/* ---- Body type ---- */
+h2 {
+  font-family: var(--heading-font);
+  font-size: 36px; font-weight: 700; line-height: 110%; letter-spacing: -0.03em;
+  margin: 64px 0 32px; text-wrap: balance;
+}
+h2:first-of-type { margin-top: 48px; }
+h3 {
+  font-family: var(--heading-font);
+  font-size: 28px; font-weight: 600; line-height: 110%; letter-spacing: -0.03em;
+  margin: 48px 0 24px;
+}
+p { margin: 0 0 32px; }
+a { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--accent); }
+strong { font-weight: 600; }
+ul, ol { margin: 0 0 32px; padding-left: 24px; }
+li { margin-bottom: 12px; }
+li::marker { color: var(--grey); }
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.88em; background: var(--surface); border: 1px solid var(--hairline);
+  border-radius: 5px; padding: 1px 6px;
+}
+blockquote {
+  margin: 0 0 32px; padding: 2px 0 2px 20px; border-left: 3px solid var(--accent);
+  font-style: italic; font-size: 18px; color: var(--ink);
+}
+blockquote cite { display: block; font-style: normal; font-size: 14px; color: var(--grey); margin-top: 10px; }
+/* ---- Dot labels + cards (the site's diagram-card vocabulary) ---- */
+.dot-label {
+  display: flex; align-items: center; gap: 9px;
+  font-family: var(--heading-font); font-size: 13.5px; font-weight: 600; color: var(--ink-label);
+  margin: 0 0 12px;
+}
+.dot-label::before {
+  content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0;
+}
+.dot-label.warn::before { background: var(--drift); }
+.card {
+  background: var(--surface); border: 1px solid var(--hairline); border-radius: 14px;
+  padding: 26px 30px; margin: 0 0 32px;
+}
+.card p { margin: 0 0 14px; }
+.card p:last-child { margin-bottom: 0; }
+.card.definition p { font-size: 18px; line-height: 165%; }
+.card.incident p { font-size: 17px; line-height: 160%; }
+/* thesis emphasis — kept inside the site's blockquote language, weighted */
+.claim {
+  margin: 40px 0; padding: 4px 0 4px 20px; border-left: 3px solid var(--accent);
+  font-family: var(--heading-font); font-size: 23px; font-weight: 600; line-height: 135%;
+  letter-spacing: -0.02em; font-style: normal;
+}
+/* ---- Figure ---- */
+figure { margin: 0 0 12px; }
+figure .card { padding: 30px 24px; margin-bottom: 12px; }
+figure svg { display: block; max-width: 100%; height: auto; }
+figcaption { font-size: 15px; line-height: 150%; color: var(--grey); margin: 0 0 32px; }
+.fig-loop .box { fill: #ffffff; stroke: rgba(20, 24, 31, 0.22); stroke-width: 1.3; }
+.fig-loop .gate { fill: #546fff; stroke: #546fff; stroke-width: 1.3; }
+.fig-loop .t { fill: #131315; font-size: 14px; font-weight: 600; font-family: 'DM Sans', system-ui, sans-serif; }
+.fig-loop .s { fill: #7a828e; font-size: 11.5px; }
+.fig-loop .gt { fill: #ffffff; font-size: 14px; font-weight: 600; font-family: 'DM Sans', system-ui, sans-serif; }
+.fig-loop .gs { fill: #dbe2ff; font-size: 12px; }
+.fig-loop .edge { stroke: #131315; stroke-width: 1.4; fill: none; }
+.fig-loop .edge-thin { stroke: #131315; stroke-width: 1.1; fill: none; }
+.fig-loop .lab { fill: #7a828e; font-size: 11.5px; }
+.fig-loop .drift-line { stroke: #b91c1c; stroke-width: 1.7; fill: none; stroke-dasharray: 7 5; }
+.fig-loop .drift-lab { fill: #b91c1c; font-size: 12.5px; font-weight: 600; }
+.fig-loop .ah { fill: #131315; }
+.fig-loop .ah-drift { fill: #b91c1c; }
+/* ---- Family cards ---- */
+.family-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 32px; }
+@media (max-width: 700px) { .family-grid { grid-template-columns: 1fr; } }
+.family { background: var(--surface); border: 1px solid var(--hairline); border-radius: 14px; padding: 22px 24px; }
+.family .num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50%; background: var(--accent-soft); color: var(--accent);
+  font-family: var(--heading-font); font-size: 14px; font-weight: 700; margin-bottom: 12px;
+}
+.family h4 { font-family: var(--heading-font); margin: 0 0 10px; font-size: 18px; font-weight: 600; letter-spacing: -0.02em; }
+.family dl { margin: 0; font-size: 14px; line-height: 150%; }
+.family dt {
+  font-family: var(--heading-font); font-size: 10.5px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--grey); margin-top: 9px;
+}
+.family dd { margin: 1px 0 0; color: var(--ink); }
+/* ---- Table ---- */
+.table-scroll { overflow-x: auto; margin: 0 0 32px; border: 1px solid var(--hairline); border-radius: 14px; }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; line-height: 150%; }
+th {
+  font-family: var(--heading-font); text-align: left; font-size: 11.5px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey);
+  padding: 12px 16px; border-bottom: 1px solid var(--hairline); background: var(--surface);
+}
+td { padding: 13px 16px; border-bottom: 1px solid var(--hairline); vertical-align: top; }
+td:first-child { font-weight: 600; }
+tr:last-child td { border-bottom: none; }
+/* ---- FAQ ---- */
+details { border-bottom: 1px solid var(--hairline-2); padding: 18px 0; }
+details:first-of-type { border-top: 1px solid var(--hairline-2); }
+details summary {
+  cursor: pointer; font-family: var(--heading-font); font-size: 18px; font-weight: 600;
+  letter-spacing: -0.01em; list-style: none;
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+}
+details summary::-webkit-details-marker { display: none; }
+details summary::after { content: "+"; font-weight: 400; color: var(--grey); flex-shrink: 0; }
+details[open] summary::after { content: "\2212"; }
+details p { font-size: 17px; line-height: 160%; margin: 12px 0 0; }
+.sources { font-size: 15px; line-height: 165%; color: var(--grey-2); }
+hr { border: none; border-top: 1px solid var(--hairline-2); margin: 56px 0; }
+/* ---- Responsive ---- */
+@media (max-width: 1080px) {
+  .page { grid-template-columns: minmax(0, 748px); justify-content: center; gap: 0; }
+  .rail { display: none; }
+}
+@media (max-width: 640px) {
+  body { font-size: 17px; }
+  h1 { font-size: 32px; letter-spacing: -0.8px; }
+  h2 { font-size: 28px; }
+  h3 { font-size: 23px; }
+  .page { padding: 36px 18px 80px; }
+  .claim { font-size: 20px; }
+  .card, .family { padding: 20px; }
+}

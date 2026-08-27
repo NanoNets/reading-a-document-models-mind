@@ -1,0 +1,186 @@
+{
+ "comparison": "shard0(125 docs) vs shard1(125 disjoint docs)",
+ "md5": {
+  "shard0": "4ff8417bc83b15eb59883989b7918518",
+  "shard1": "40deec257a3fd3486749ffddeacbad32"
+ },
+ "per_layer": [
+  {
+   "layer": 0,
+   "cka_jlens_vectors": 0.998,
+   "cos_raw": 0.9938
+  },
+  {
+   "layer": 1,
+   "cka_jlens_vectors": 0.9981,
+   "cos_raw": 0.9941
+  },
+  {
+   "layer": 2,
+   "cka_jlens_vectors": 0.998,
+   "cos_raw": 0.9942
+  },
+  {
+   "layer": 3,
+   "cka_jlens_vectors": 0.998,
+   "cos_raw": 0.9947
+  },
+  {
+   "layer": 4,
+   "cka_jlens_vectors": 0.9982,
+   "cos_raw": 0.9952
+  },
+  {
+   "layer": 5,
+   "cka_jlens_vectors": 0.9981,
+   "cos_raw": 0.9953
+  },
+  {
+   "layer": 6,
+   "cka_jlens_vectors": 0.9981,
+   "cos_raw": 0.9959
+  },
+  {
+   "layer": 7,
+   "cka_jlens_vectors": 0.9982,
+   "cos_raw": 0.9963
+  },
+  {
+   "layer": 8,
+   "cka_jlens_vectors": 0.9987,
+   "cos_raw": 0.9973
+  },
+  {
+   "layer": 9,
+   "cka_jlens_vectors": 0.9988,
+   "cos_raw": 0.9976
+  },
+  {
+   "layer": 10,
+   "cka_jlens_vectors": 0.9988,
+   "cos_raw": 0.9978
+  },
+  {
+   "layer": 11,
+   "cka_jlens_vectors": 0.9989,
+   "cos_raw": 0.9983
+  },
+  {
+   "layer": 12,
+   "cka_jlens_vectors": 0.9989,
+   "cos_raw": 0.9984
+  },
+  {
+   "layer": 13,
+   "cka_jlens_vectors": 0.9989,
+   "cos_raw": 0.9984
+  },
+  {
+   "layer": 14,
+   "cka_jlens_vectors": 0.9989,
+   "cos_raw": 0.9983
+  },
+  {
+   "layer": 15,
+   "cka_jlens_vectors": 0.9989,
+   "cos_raw": 0.9982
+  },
+  {
+   "layer": 16,
+   "cka_jlens_vectors": 0.9988,
+   "cos_raw": 0.998
+  },
+  {
+   "layer": 17,
+   "cka_jlens_vectors": 0.9988,
+   "cos_raw": 0.9982
+  },
+  {
+   "layer": 18,
+   "cka_jlens_vectors": 0.9989,
+   "cos_raw": 0.9984
+  },
+  {
+   "layer": 19,
+   "cka_jlens_vectors": 0.9989,
+   "cos_raw": 0.9983
+  },
+  {
+   "layer": 20,
+   "cka_jlens_vectors": 0.9989,
+   "cos_raw": 0.9985
+  },
+  {
+   "layer": 21,
+   "cka_jlens_vectors": 0.9989,
+   "cos_raw": 0.9986
+  },
+  {
+   "layer": 22,
+   "cka_jlens_vectors": 0.9989,
+   "cos_raw": 0.9988
+  },
+  {
+   "layer": 23,
+   "cka_jlens_vectors": 0.9989,
+   "cos_raw": 0.9989
+  },
+  {
+   "layer": 24,
+   "cka_jlens_vectors": 0.9991,
+   "cos_raw": 0.9992
+  },
+  {
+   "layer": 25,
+   "cka_jlens_vectors": 0.9992,
+   "cos_raw": 0.9995
+  },
+  {
+   "layer": 26,
+   "cka_jlens_vectors": 0.9995,
+   "cos_raw": 0.9997
+  },
+  {
+   "layer": 27,
+   "cka_jlens_vectors": 0.9995,
+   "cos_raw": 0.9999
+  },
+  {
+   "layer": 28,
+   "cka_jlens_vectors": 0.9995,
+   "cos_raw": 1.0001
+  },
+  {
+   "layer": 29,
+   "cka_jlens_vectors": 0.9995,
+   "cos_raw": 1.0002
+  },
+  {
+   "layer": 30,
+   "cka_jlens_vectors": 0.9997,
+   "cos_raw": 1.0004
+  },
+  {
+   "layer": 31,
+   "cka_jlens_vectors": 0.9997,
+   "cos_raw": 1.0006
+  },
+  {
+   "layer": 32,
+   "cka_jlens_vectors": 0.9997,
+   "cos_raw": 1.0008
+  },
+  {
+   "layer": 33,
+   "cka_jlens_vectors": 0.9998,
+   "cos_raw": 1.0013
+  },
+  {
+   "layer": 34,
+   "cka_jlens_vectors": 0.9999,
+   "cos_raw": 1.0019
+  }
+ ],
+ "seed": 20260825,
+ "n_vocab_sample": 4000
+}

@@ -1,0 +1,52 @@
+{
+ "12": {
+  "f": 0.66,
+  "f_rawgain": 0.633,
+  "rho": -0.15,
+  "load_med_P1": 0.08,
+  "load_null": 0.083,
+  "load_ceiling": 1.0,
+  "bmlp_raw_P5": 0.99,
+  "bmlp_raw_P1": 1.32
+ },
+ "16": {
+  "f": 0.874,
+  "f_rawgain": 0.84,
+  "rho": -0.318,
+  "load_med_P1": 0.079,
+  "load_null": 0.084,
+  "load_ceiling": 1.0,
+  "bmlp_raw_P5": 1.09,
+  "bmlp_raw_P1": 1.49
+ },
+ "21": {
+  "f": 0.629,
+  "f_rawgain": 0.52,
+  "rho": -0.033,
+  "load_med_P1": 0.083,
+  "load_null": 0.084,
+  "load_ceiling": 1.0,
+  "bmlp_raw_P5": 1.09,
+  "bmlp_raw_P1": 1.48
+ },
+ "26": {
+  "f": 0.046,
+  "f_rawgain": 0.046,
+  "rho": 0.097,
+  "load_med_P1": 0.094,
+  "load_null": 0.078,
+  "load_ceiling": 1.0,
+  "bmlp_raw_P5": 1.07,
+  "bmlp_raw_P1": 1.28
+ },
+ "30": {
+  "f": 0.02,
+  "f_rawgain": 0.027,
+  "rho": -0.066,
+  "load_med_P1": 0.15,
+  "load_null": 0.066,
+  "load_ceiling": 1.0,
+  "bmlp_raw_P5": 1.18,
+  "bmlp_raw_P1": 1.17
+ }
+}
